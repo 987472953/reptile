@@ -1,0 +1,2162 @@
+[
+    {
+        "id": 167,
+        "question": "常识 单元测试（一）",
+        "type": null,
+        "path": "/Users/mac/code/py/py/yangying/综合模拟测试（九）:3994d615-9c1d-4810-9650-661144d8d615",
+        "answerFlow": null,
+        "children": [
+            {
+                "id": 168,
+                "question": "1.这首乐曲的曲名是：",
+                "type": "1",
+                "path": "/Users/mac/code/py/py/yangying/综合模拟测试（九）:3994d615-9c1d-4810-9650-661144d8d615",
+                "items": [
+                    {
+                        "text": "安妮特拉舞曲"
+                    },
+                    {
+                        "text": "《绿袖子》主题幻想曲"
+                    },
+                    {
+                        "text": "钟"
+                    },
+                    {
+                        "text": "G大调小步舞曲"
+                    }
+                ],
+                "audio": "audio/940_2018_05_03_audio_1525316413749.mp3",
+                "answerFlow": [
+                    [
+                        {
+                            "name": "showTitle",
+                            "order": 0,
+                            "ratio": [
+                                5,
+                                4,
+                                2
+                            ],
+                            "value": "1.这首乐曲的曲名是：",
+                            "valueType": "string"
+                        },
+                        {
+                            "name": "showOptions",
+                            "order": 0,
+                            "value": "[[\"A\",\"安妮特拉舞曲\",\"\"],[\"B\",\"《绿袖子》主题幻想曲\",\"\"],[\"C\",\"钟\",\"\"],[\"D\",\"G大调小步舞曲\",\"\"]]",
+                            "valueType": "matrix"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "wait",
+                            "order": 1,
+                            "value": "0.5",
+                            "valueType": "float"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 2,
+                            "value": "audio/1527_2018_05_29_audio_1527563802223.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 3,
+                            "value": "audio/75_2018_01_29_audio_20180129163415.mp3",
+                            "valueType": "resource"
+                        },
+                        {
+                            "name": "showTips",
+                            "order": 3,
+                            "value": "第一遍",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 4,
+                            "value": "audio/940_2018_05_03_audio_1525316413749.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 5,
+                            "value": "audio/76_2018_01_29_audio_20180129163420.mp3",
+                            "valueType": "resource"
+                        },
+                        {
+                            "name": "showTips",
+                            "order": 5,
+                            "value": "第二遍",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 6,
+                            "value": "audio/940_2018_05_03_audio_1525316413749.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "showTips",
+                            "order": 7,
+                            "value": "请答题",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "finish",
+                            "order": 8,
+                            "value": "",
+                            "valueType": ""
+                        }
+                    ]
+                ],
+                "children": []
+            },
+            {
+                "id": 169,
+                "question": "2.这首歌曲的歌名是：",
+                "type": "1",
+                "path": "/Users/mac/code/py/py/yangying/综合模拟测试（九）:3994d615-9c1d-4810-9650-661144d8d615",
+                "items": [
+                    {
+                        "text": "普茹莱弟弟"
+                    },
+                    {
+                        "text": "让我们荡起双桨"
+                    },
+                    {
+                        "text": "听妈妈讲那过去的事情"
+                    },
+                    {
+                        "text": "旗正飘飘"
+                    }
+                ],
+                "audio": "audio/942_2018_05_03_audio_1525316524222.mp3",
+                "answerFlow": [
+                    [
+                        {
+                            "name": "showTitle",
+                            "order": 0,
+                            "ratio": [
+                                5,
+                                4,
+                                2
+                            ],
+                            "value": "2.这首歌曲的歌名是：",
+                            "valueType": "string"
+                        },
+                        {
+                            "name": "showOptions",
+                            "order": 0,
+                            "value": "[[\"A\",\"普茹莱弟弟\",\"\"],[\"B\",\"让我们荡起双桨\",\"\"],[\"C\",\"听妈妈讲那过去的事情\",\"\"],[\"D\",\"旗正飘飘\",\"\"]]",
+                            "valueType": "matrix"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "wait",
+                            "order": 1,
+                            "value": "0.5",
+                            "valueType": "float"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 2,
+                            "value": "audio/1528_2018_05_29_audio_1527563802233.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 3,
+                            "value": "audio/75_2018_01_29_audio_20180129163415.mp3",
+                            "valueType": "resource"
+                        },
+                        {
+                            "name": "showTips",
+                            "order": 3,
+                            "value": "第一遍",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 4,
+                            "value": "audio/942_2018_05_03_audio_1525316524222.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 5,
+                            "value": "audio/76_2018_01_29_audio_20180129163420.mp3",
+                            "valueType": "resource"
+                        },
+                        {
+                            "name": "showTips",
+                            "order": 5,
+                            "value": "第二遍",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 6,
+                            "value": "audio/942_2018_05_03_audio_1525316524222.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "showTips",
+                            "order": 7,
+                            "value": "请答题",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "finish",
+                            "order": 8,
+                            "value": "",
+                            "valueType": ""
+                        }
+                    ]
+                ],
+                "children": []
+            },
+            {
+                "id": 170,
+                "question": "3.这首乐曲的曲名是：",
+                "type": "1",
+                "path": "/Users/mac/code/py/py/yangying/综合模拟测试（九）:3994d615-9c1d-4810-9650-661144d8d615",
+                "items": [
+                    {
+                        "text": "牧童短笛"
+                    },
+                    {
+                        "text": "钟"
+                    },
+                    {
+                        "text": "安妮特拉舞曲"
+                    },
+                    {
+                        "text": "G大调小步舞曲"
+                    }
+                ],
+                "audio": "audio/944_2018_05_03_audio_1525316586320.mp3",
+                "answerFlow": [
+                    [
+                        {
+                            "name": "showTitle",
+                            "order": 0,
+                            "ratio": [
+                                5,
+                                4,
+                                2
+                            ],
+                            "value": "3.这首乐曲的曲名是：",
+                            "valueType": "string"
+                        },
+                        {
+                            "name": "showOptions",
+                            "order": 0,
+                            "value": "[[\"A\",\"牧童短笛\",\"\"],[\"B\",\"钟\",\"\"],[\"C\",\"安妮特拉舞曲\",\"\"],[\"D\",\"G大调小步舞曲\",\"\"]]",
+                            "valueType": "matrix"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "wait",
+                            "order": 1,
+                            "value": "0.5",
+                            "valueType": "float"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 2,
+                            "value": "audio/1529_2018_05_29_audio_1527563802243.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 3,
+                            "value": "audio/75_2018_01_29_audio_20180129163415.mp3",
+                            "valueType": "resource"
+                        },
+                        {
+                            "name": "showTips",
+                            "order": 3,
+                            "value": "第一遍",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 4,
+                            "value": "audio/944_2018_05_03_audio_1525316586320.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 5,
+                            "value": "audio/76_2018_01_29_audio_20180129163420.mp3",
+                            "valueType": "resource"
+                        },
+                        {
+                            "name": "showTips",
+                            "order": 5,
+                            "value": "第二遍",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 6,
+                            "value": "audio/944_2018_05_03_audio_1525316586320.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "showTips",
+                            "order": 7,
+                            "value": "请答题",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "finish",
+                            "order": 8,
+                            "value": "",
+                            "valueType": ""
+                        }
+                    ]
+                ],
+                "children": []
+            },
+            {
+                "id": 171,
+                "question": "4.这首歌曲的演唱形式是：",
+                "type": "1",
+                "path": "/Users/mac/code/py/py/yangying/综合模拟测试（九）:3994d615-9c1d-4810-9650-661144d8d615",
+                "items": [
+                    {
+                        "text": "女声二重唱"
+                    },
+                    {
+                        "text": "男女声五重唱"
+                    },
+                    {
+                        "text": "男声四重唱"
+                    },
+                    {
+                        "text": "男女声二重唱"
+                    }
+                ],
+                "audio": "audio/946_2018_05_03_audio_1525316620612.mp3",
+                "answerFlow": [
+                    [
+                        {
+                            "name": "showTitle",
+                            "order": 0,
+                            "ratio": [
+                                5,
+                                4,
+                                2
+                            ],
+                            "value": "4.这首歌曲的演唱形式是：",
+                            "valueType": "string"
+                        },
+                        {
+                            "name": "showOptions",
+                            "order": 0,
+                            "value": "[[\"A\",\"女声二重唱\",\"\"],[\"B\",\"男女声五重唱\",\"\"],[\"C\",\"男声四重唱\",\"\"],[\"D\",\"男女声二重唱\",\"\"]]",
+                            "valueType": "matrix"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "wait",
+                            "order": 1,
+                            "value": "0.5",
+                            "valueType": "float"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 2,
+                            "value": "audio/1530_2018_05_29_audio_1527563802254.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 3,
+                            "value": "audio/75_2018_01_29_audio_20180129163415.mp3",
+                            "valueType": "resource"
+                        },
+                        {
+                            "name": "showTips",
+                            "order": 3,
+                            "value": "第一遍",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 4,
+                            "value": "audio/946_2018_05_03_audio_1525316620612.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 5,
+                            "value": "audio/76_2018_01_29_audio_20180129163420.mp3",
+                            "valueType": "resource"
+                        },
+                        {
+                            "name": "showTips",
+                            "order": 5,
+                            "value": "第二遍",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 6,
+                            "value": "audio/946_2018_05_03_audio_1525316620612.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "showTips",
+                            "order": 7,
+                            "value": "请答题",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "finish",
+                            "order": 8,
+                            "value": "",
+                            "valueType": ""
+                        }
+                    ]
+                ],
+                "children": []
+            },
+            {
+                "id": 172,
+                "question": "5.这首歌曲的演唱形式是：",
+                "type": "1",
+                "path": "/Users/mac/code/py/py/yangying/综合模拟测试（九）:3994d615-9c1d-4810-9650-661144d8d615",
+                "items": [
+                    {
+                        "text": "女声二重唱"
+                    },
+                    {
+                        "text": "男声四重唱"
+                    },
+                    {
+                        "text": "男女声五重唱"
+                    },
+                    {
+                        "text": "男女声二重唱"
+                    }
+                ],
+                "audio": "audio/948_2018_05_03_audio_1525316662195.mp3",
+                "answerFlow": [
+                    [
+                        {
+                            "name": "showTitle",
+                            "order": 0,
+                            "ratio": [
+                                5,
+                                4,
+                                2
+                            ],
+                            "value": "5.这首歌曲的演唱形式是：",
+                            "valueType": "string"
+                        },
+                        {
+                            "name": "showOptions",
+                            "order": 0,
+                            "value": "[[\"A\",\"女声二重唱\",\"\"],[\"B\",\"男声四重唱\",\"\"],[\"C\",\"男女声五重唱\",\"\"],[\"D\",\"男女声二重唱\",\"\"]]",
+                            "valueType": "matrix"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "wait",
+                            "order": 1,
+                            "value": "0.5",
+                            "valueType": "float"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 2,
+                            "value": "audio/1531_2018_05_29_audio_1527563802276.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 3,
+                            "value": "audio/75_2018_01_29_audio_20180129163415.mp3",
+                            "valueType": "resource"
+                        },
+                        {
+                            "name": "showTips",
+                            "order": 3,
+                            "value": "第一遍",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 4,
+                            "value": "audio/948_2018_05_03_audio_1525316662195.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 5,
+                            "value": "audio/76_2018_01_29_audio_20180129163420.mp3",
+                            "valueType": "resource"
+                        },
+                        {
+                            "name": "showTips",
+                            "order": 5,
+                            "value": "第二遍",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 6,
+                            "value": "audio/948_2018_05_03_audio_1525316662195.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "showTips",
+                            "order": 7,
+                            "value": "请答题",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "finish",
+                            "order": 8,
+                            "value": "",
+                            "valueType": ""
+                        }
+                    ]
+                ],
+                "children": []
+            },
+            {
+                "id": 173,
+                "question": "6.这首歌曲的演唱形式是：",
+                "type": "1",
+                "path": "/Users/mac/code/py/py/yangying/综合模拟测试（九）:3994d615-9c1d-4810-9650-661144d8d615",
+                "items": [
+                    {
+                        "text": "男女声二重唱"
+                    },
+                    {
+                        "text": "男女声五重唱"
+                    },
+                    {
+                        "text": "男声四重唱"
+                    },
+                    {
+                        "text": "女声二重唱"
+                    }
+                ],
+                "audio": "audio/950_2018_05_03_audio_1525316697011.mp3",
+                "answerFlow": [
+                    [
+                        {
+                            "name": "showTitle",
+                            "order": 0,
+                            "ratio": [
+                                5,
+                                4,
+                                2
+                            ],
+                            "value": "6.这首歌曲的演唱形式是：",
+                            "valueType": "string"
+                        },
+                        {
+                            "name": "showOptions",
+                            "order": 0,
+                            "value": "[[\"A\",\"男女声二重唱\",\"\"],[\"B\",\"男女声五重唱\",\"\"],[\"C\",\"男声四重唱\",\"\"],[\"D\",\"女声二重唱\",\"\"]]",
+                            "valueType": "matrix"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "wait",
+                            "order": 1,
+                            "value": "0.5",
+                            "valueType": "float"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 2,
+                            "value": "audio/1532_2018_05_29_audio_1527563802285.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 3,
+                            "value": "audio/75_2018_01_29_audio_20180129163415.mp3",
+                            "valueType": "resource"
+                        },
+                        {
+                            "name": "showTips",
+                            "order": 3,
+                            "value": "第一遍",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 4,
+                            "value": "audio/950_2018_05_03_audio_1525316697011.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 5,
+                            "value": "audio/76_2018_01_29_audio_20180129163420.mp3",
+                            "valueType": "resource"
+                        },
+                        {
+                            "name": "showTips",
+                            "order": 5,
+                            "value": "第二遍",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 6,
+                            "value": "audio/950_2018_05_03_audio_1525316697011.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "showTips",
+                            "order": 7,
+                            "value": "请答题",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "finish",
+                            "order": 8,
+                            "value": "",
+                            "valueType": ""
+                        }
+                    ]
+                ],
+                "children": []
+            },
+            {
+                "id": 174,
+                "question": "7.这首乐曲的曲名是：",
+                "type": "1",
+                "path": "/Users/mac/code/py/py/yangying/综合模拟测试（九）:3994d615-9c1d-4810-9650-661144d8d615",
+                "items": [
+                    {
+                        "text": "安妮特拉舞曲"
+                    },
+                    {
+                        "text": "牧童短笛"
+                    },
+                    {
+                        "text": "钟"
+                    },
+                    {
+                        "text": "瑶族舞曲"
+                    }
+                ],
+                "audio": "audio/952_2018_05_03_audio_1525316730212.mp3",
+                "answerFlow": [
+                    [
+                        {
+                            "name": "showTitle",
+                            "order": 0,
+                            "ratio": [
+                                5,
+                                4,
+                                2
+                            ],
+                            "value": "7.这首乐曲的曲名是：",
+                            "valueType": "string"
+                        },
+                        {
+                            "name": "showOptions",
+                            "order": 0,
+                            "value": "[[\"A\",\"安妮特拉舞曲\",\"\"],[\"B\",\"牧童短笛\",\"\"],[\"C\",\"钟\",\"\"],[\"D\",\"瑶族舞曲\",\"\"]]",
+                            "valueType": "matrix"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "wait",
+                            "order": 1,
+                            "value": "0.5",
+                            "valueType": "float"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 2,
+                            "value": "audio/1533_2018_05_29_audio_1527563802295.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 3,
+                            "value": "audio/75_2018_01_29_audio_20180129163415.mp3",
+                            "valueType": "resource"
+                        },
+                        {
+                            "name": "showTips",
+                            "order": 3,
+                            "value": "第一遍",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 4,
+                            "value": "audio/952_2018_05_03_audio_1525316730212.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 5,
+                            "value": "audio/76_2018_01_29_audio_20180129163420.mp3",
+                            "valueType": "resource"
+                        },
+                        {
+                            "name": "showTips",
+                            "order": 5,
+                            "value": "第二遍",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 6,
+                            "value": "audio/952_2018_05_03_audio_1525316730212.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "showTips",
+                            "order": 7,
+                            "value": "请答题",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "finish",
+                            "order": 8,
+                            "value": "",
+                            "valueType": ""
+                        }
+                    ]
+                ],
+                "children": []
+            },
+            {
+                "id": 175,
+                "question": "8.这首乐曲的曲名是：",
+                "type": "1",
+                "path": "/Users/mac/code/py/py/yangying/综合模拟测试（九）:3994d615-9c1d-4810-9650-661144d8d615",
+                "items": [
+                    {
+                        "text": "瑶族舞曲"
+                    },
+                    {
+                        "text": "牧童短笛"
+                    },
+                    {
+                        "text": "安妮特拉舞曲"
+                    },
+                    {
+                        "text": "G大调小步舞曲"
+                    }
+                ],
+                "audio": "audio/954_2018_05_03_audio_1525316766242.mp3",
+                "answerFlow": [
+                    [
+                        {
+                            "name": "showTitle",
+                            "order": 0,
+                            "ratio": [
+                                5,
+                                4,
+                                2
+                            ],
+                            "value": "8.这首乐曲的曲名是：",
+                            "valueType": "string"
+                        },
+                        {
+                            "name": "showOptions",
+                            "order": 0,
+                            "value": "[[\"A\",\"瑶族舞曲\",\"\"],[\"B\",\"牧童短笛\",\"\"],[\"C\",\"安妮特拉舞曲\",\"\"],[\"D\",\"G大调小步舞曲\",\"\"]]",
+                            "valueType": "matrix"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "wait",
+                            "order": 1,
+                            "value": "0.5",
+                            "valueType": "float"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 2,
+                            "value": "audio/1534_2018_05_29_audio_1527563802305.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 3,
+                            "value": "audio/75_2018_01_29_audio_20180129163415.mp3",
+                            "valueType": "resource"
+                        },
+                        {
+                            "name": "showTips",
+                            "order": 3,
+                            "value": "第一遍",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 4,
+                            "value": "audio/954_2018_05_03_audio_1525316766242.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 5,
+                            "value": "audio/76_2018_01_29_audio_20180129163420.mp3",
+                            "valueType": "resource"
+                        },
+                        {
+                            "name": "showTips",
+                            "order": 5,
+                            "value": "第二遍",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 6,
+                            "value": "audio/954_2018_05_03_audio_1525316766242.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "showTips",
+                            "order": 7,
+                            "value": "请答题",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "finish",
+                            "order": 8,
+                            "value": "",
+                            "valueType": ""
+                        }
+                    ]
+                ],
+                "children": []
+            },
+            {
+                "id": 176,
+                "question": "9.这首乐曲的曲名是：",
+                "type": "1",
+                "path": "/Users/mac/code/py/py/yangying/综合模拟测试（九）:3994d615-9c1d-4810-9650-661144d8d615",
+                "items": [
+                    {
+                        "text": "瑶族舞曲"
+                    },
+                    {
+                        "text": "G大调小步舞曲"
+                    },
+                    {
+                        "text": "安妮特拉舞曲"
+                    },
+                    {
+                        "text": "牧童短笛"
+                    }
+                ],
+                "audio": "audio/956_2018_05_03_audio_1525316892265.mp3",
+                "answerFlow": [
+                    [
+                        {
+                            "name": "showTitle",
+                            "order": 0,
+                            "ratio": [
+                                5,
+                                4,
+                                2
+                            ],
+                            "value": "9.这首乐曲的曲名是：",
+                            "valueType": "string"
+                        },
+                        {
+                            "name": "showOptions",
+                            "order": 0,
+                            "value": "[[\"A\",\"瑶族舞曲\",\"\"],[\"B\",\"G大调小步舞曲\",\"\"],[\"C\",\"安妮特拉舞曲\",\"\"],[\"D\",\"牧童短笛\",\"\"]]",
+                            "valueType": "matrix"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "wait",
+                            "order": 1,
+                            "value": "0.5",
+                            "valueType": "float"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 2,
+                            "value": "audio/1535_2018_05_29_audio_1527563802316.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 3,
+                            "value": "audio/75_2018_01_29_audio_20180129163415.mp3",
+                            "valueType": "resource"
+                        },
+                        {
+                            "name": "showTips",
+                            "order": 3,
+                            "value": "第一遍",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 4,
+                            "value": "audio/956_2018_05_03_audio_1525316892265.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 5,
+                            "value": "audio/76_2018_01_29_audio_20180129163420.mp3",
+                            "valueType": "resource"
+                        },
+                        {
+                            "name": "showTips",
+                            "order": 5,
+                            "value": "第二遍",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 6,
+                            "value": "audio/956_2018_05_03_audio_1525316892265.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "showTips",
+                            "order": 7,
+                            "value": "请答题",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "finish",
+                            "order": 8,
+                            "value": "",
+                            "valueType": ""
+                        }
+                    ]
+                ],
+                "children": []
+            },
+            {
+                "id": 177,
+                "question": "10.这首乐曲的曲名是：",
+                "type": "1",
+                "path": "/Users/mac/code/py/py/yangying/综合模拟测试（九）:3994d615-9c1d-4810-9650-661144d8d615",
+                "items": [
+                    {
+                        "text": "安妮特拉舞曲"
+                    },
+                    {
+                        "text": "钟"
+                    },
+                    {
+                        "text": "G大调小步舞曲"
+                    },
+                    {
+                        "text": "《绿袖子》主题幻想曲"
+                    }
+                ],
+                "audio": "audio/958_2018_05_03_audio_1525316933612.mp3",
+                "answerFlow": [
+                    [
+                        {
+                            "name": "showTitle",
+                            "order": 0,
+                            "ratio": [
+                                5,
+                                4,
+                                2
+                            ],
+                            "value": "10.这首乐曲的曲名是：",
+                            "valueType": "string"
+                        },
+                        {
+                            "name": "showOptions",
+                            "order": 0,
+                            "value": "[[\"A\",\"安妮特拉舞曲\",\"\"],[\"B\",\"钟\",\"\"],[\"C\",\"G大调小步舞曲\",\"\"],[\"D\",\"《绿袖子》主题幻想曲\",\"\"]]",
+                            "valueType": "matrix"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "wait",
+                            "order": 1,
+                            "value": "0.5",
+                            "valueType": "float"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 2,
+                            "value": "audio/1536_2018_05_29_audio_1527563802327.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 3,
+                            "value": "audio/75_2018_01_29_audio_20180129163415.mp3",
+                            "valueType": "resource"
+                        },
+                        {
+                            "name": "showTips",
+                            "order": 3,
+                            "value": "第一遍",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 4,
+                            "value": "audio/958_2018_05_03_audio_1525316933612.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 5,
+                            "value": "audio/76_2018_01_29_audio_20180129163420.mp3",
+                            "valueType": "resource"
+                        },
+                        {
+                            "name": "showTips",
+                            "order": 5,
+                            "value": "第二遍",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 6,
+                            "value": "audio/958_2018_05_03_audio_1525316933612.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "showTips",
+                            "order": 7,
+                            "value": "请答题",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "finish",
+                            "order": 8,
+                            "value": "",
+                            "valueType": ""
+                        }
+                    ]
+                ],
+                "children": []
+            },
+            {
+                "id": 178,
+                "question": "11.这首歌曲的演唱形式是：",
+                "type": "1",
+                "path": "/Users/mac/code/py/py/yangying/综合模拟测试（九）:3994d615-9c1d-4810-9650-661144d8d615",
+                "items": [
+                    {
+                        "text": "男声四重唱"
+                    },
+                    {
+                        "text": "男女声二重唱"
+                    },
+                    {
+                        "text": "女声二重唱"
+                    },
+                    {
+                        "text": "男女声五重唱"
+                    }
+                ],
+                "audio": "audio/960_2018_05_03_audio_1525316970554.mp3",
+                "answerFlow": [
+                    [
+                        {
+                            "name": "showTitle",
+                            "order": 0,
+                            "ratio": [
+                                5,
+                                4,
+                                2
+                            ],
+                            "value": "11.这首歌曲的演唱形式是：",
+                            "valueType": "string"
+                        },
+                        {
+                            "name": "showOptions",
+                            "order": 0,
+                            "value": "[[\"A\",\"男声四重唱\",\"\"],[\"B\",\"男女声二重唱\",\"\"],[\"C\",\"女声二重唱\",\"\"],[\"D\",\"男女声五重唱\",\"\"]]",
+                            "valueType": "matrix"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "wait",
+                            "order": 1,
+                            "value": "0.5",
+                            "valueType": "float"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 2,
+                            "value": "audio/1537_2018_05_29_audio_1527563802337.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 3,
+                            "value": "audio/75_2018_01_29_audio_20180129163415.mp3",
+                            "valueType": "resource"
+                        },
+                        {
+                            "name": "showTips",
+                            "order": 3,
+                            "value": "第一遍",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 4,
+                            "value": "audio/960_2018_05_03_audio_1525316970554.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 5,
+                            "value": "audio/76_2018_01_29_audio_20180129163420.mp3",
+                            "valueType": "resource"
+                        },
+                        {
+                            "name": "showTips",
+                            "order": 5,
+                            "value": "第二遍",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 6,
+                            "value": "audio/960_2018_05_03_audio_1525316970554.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "showTips",
+                            "order": 7,
+                            "value": "请答题",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "finish",
+                            "order": 8,
+                            "value": "",
+                            "valueType": ""
+                        }
+                    ]
+                ],
+                "children": []
+            },
+            {
+                "id": 179,
+                "question": "12.这首歌曲的演唱形式是：",
+                "type": "1",
+                "path": "/Users/mac/code/py/py/yangying/综合模拟测试（九）:3994d615-9c1d-4810-9650-661144d8d615",
+                "items": [
+                    {
+                        "text": "男声四重唱"
+                    },
+                    {
+                        "text": "女声二重唱"
+                    },
+                    {
+                        "text": "男女声二重唱"
+                    },
+                    {
+                        "text": "男女声五重唱"
+                    }
+                ],
+                "audio": "audio/962_2018_05_03_audio_1525317000923.mp3",
+                "answerFlow": [
+                    [
+                        {
+                            "name": "showTitle",
+                            "order": 0,
+                            "ratio": [
+                                5,
+                                4,
+                                2
+                            ],
+                            "value": "12.这首歌曲的演唱形式是：",
+                            "valueType": "string"
+                        },
+                        {
+                            "name": "showOptions",
+                            "order": 0,
+                            "value": "[[\"A\",\"男声四重唱\",\"\"],[\"B\",\"女声二重唱\",\"\"],[\"C\",\"男女声二重唱\",\"\"],[\"D\",\"男女声五重唱\",\"\"]]",
+                            "valueType": "matrix"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "wait",
+                            "order": 1,
+                            "value": "0.5",
+                            "valueType": "float"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 2,
+                            "value": "audio/1538_2018_05_29_audio_1527563802346.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 3,
+                            "value": "audio/75_2018_01_29_audio_20180129163415.mp3",
+                            "valueType": "resource"
+                        },
+                        {
+                            "name": "showTips",
+                            "order": 3,
+                            "value": "第一遍",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 4,
+                            "value": "audio/962_2018_05_03_audio_1525317000923.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 5,
+                            "value": "audio/76_2018_01_29_audio_20180129163420.mp3",
+                            "valueType": "resource"
+                        },
+                        {
+                            "name": "showTips",
+                            "order": 5,
+                            "value": "第二遍",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 6,
+                            "value": "audio/962_2018_05_03_audio_1525317000923.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "showTips",
+                            "order": 7,
+                            "value": "请答题",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "finish",
+                            "order": 8,
+                            "value": "",
+                            "valueType": ""
+                        }
+                    ]
+                ],
+                "children": []
+            }
+        ]
+    },
+    {
+        "id": 160,
+        "question": "常识 第03-04课随堂训练",
+        "type": null,
+        "path": "/Users/mac/code/py/py/yangying/综合模拟测试（六）:20da1ff5-8ea6-4c9b-8cf8-c71eb5294ed8",
+        "answerFlow": null,
+        "children": [
+            {
+                "id": 161,
+                "question": "1.这首乐曲的曲名是：",
+                "type": "1",
+                "path": "/Users/mac/code/py/py/yangying/综合模拟测试（六）:20da1ff5-8ea6-4c9b-8cf8-c71eb5294ed8",
+                "items": [
+                    {
+                        "text": "钟"
+                    },
+                    {
+                        "text": "G大调小步舞曲"
+                    },
+                    {
+                        "text": "安妮特拉舞曲"
+                    },
+                    {
+                        "text": "《绿袖子》主题幻想曲"
+                    }
+                ],
+                "audio": "audio/964_2018_05_03_audio_1525317491272.mp3",
+                "answerFlow": [
+                    [
+                        {
+                            "name": "showTitle",
+                            "order": 0,
+                            "ratio": [
+                                5,
+                                4,
+                                2
+                            ],
+                            "value": "1.这首乐曲的曲名是：",
+                            "valueType": "string"
+                        },
+                        {
+                            "name": "showOptions",
+                            "order": 0,
+                            "value": "[[\"A\",\"钟\",\"\"],[\"B\",\"G大调小步舞曲\",\"\"],[\"C\",\"安妮特拉舞曲\",\"\"],[\"D\",\"《绿袖子》主题幻想曲\",\"\"]]",
+                            "valueType": "matrix"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "wait",
+                            "order": 1,
+                            "value": "0.5",
+                            "valueType": "float"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 2,
+                            "value": "audio/1521_2018_05_29_audio_1527563802163.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 3,
+                            "value": "audio/75_2018_01_29_audio_20180129163415.mp3",
+                            "valueType": "resource"
+                        },
+                        {
+                            "name": "showTips",
+                            "order": 3,
+                            "value": "第一遍",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 4,
+                            "value": "audio/964_2018_05_03_audio_1525317491272.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 5,
+                            "value": "audio/76_2018_01_29_audio_20180129163420.mp3",
+                            "valueType": "resource"
+                        },
+                        {
+                            "name": "showTips",
+                            "order": 5,
+                            "value": "第二遍",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 6,
+                            "value": "audio/964_2018_05_03_audio_1525317491272.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "showTips",
+                            "order": 7,
+                            "value": "请答题",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "finish",
+                            "order": 8,
+                            "value": "",
+                            "valueType": ""
+                        }
+                    ]
+                ],
+                "children": []
+            },
+            {
+                "id": 162,
+                "question": "2.这首乐曲的曲名是：",
+                "type": "1",
+                "path": "/Users/mac/code/py/py/yangying/综合模拟测试（六）:20da1ff5-8ea6-4c9b-8cf8-c71eb5294ed8",
+                "items": [
+                    {
+                        "text": "G大调小步舞曲"
+                    },
+                    {
+                        "text": "钟"
+                    },
+                    {
+                        "text": "瑶族舞曲"
+                    },
+                    {
+                        "text": "《绿袖子》主题幻想曲"
+                    }
+                ],
+                "audio": "audio/966_2018_05_03_audio_1525318628493.mp3",
+                "answerFlow": [
+                    [
+                        {
+                            "name": "showTitle",
+                            "order": 0,
+                            "ratio": [
+                                5,
+                                4,
+                                2
+                            ],
+                            "value": "2.这首乐曲的曲名是：",
+                            "valueType": "string"
+                        },
+                        {
+                            "name": "showOptions",
+                            "order": 0,
+                            "value": "[[\"A\",\"G大调小步舞曲\",\"\"],[\"B\",\"钟\",\"\"],[\"C\",\"瑶族舞曲\",\"\"],[\"D\",\"《绿袖子》主题幻想曲\",\"\"]]",
+                            "valueType": "matrix"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "wait",
+                            "order": 1,
+                            "value": "0.5",
+                            "valueType": "float"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 2,
+                            "value": "audio/1522_2018_05_29_audio_1527563802174.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 3,
+                            "value": "audio/75_2018_01_29_audio_20180129163415.mp3",
+                            "valueType": "resource"
+                        },
+                        {
+                            "name": "showTips",
+                            "order": 3,
+                            "value": "第一遍",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 4,
+                            "value": "audio/966_2018_05_03_audio_1525318628493.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 5,
+                            "value": "audio/76_2018_01_29_audio_20180129163420.mp3",
+                            "valueType": "resource"
+                        },
+                        {
+                            "name": "showTips",
+                            "order": 5,
+                            "value": "第二遍",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 6,
+                            "value": "audio/966_2018_05_03_audio_1525318628493.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "showTips",
+                            "order": 7,
+                            "value": "请答题",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "finish",
+                            "order": 8,
+                            "value": "",
+                            "valueType": ""
+                        }
+                    ]
+                ],
+                "children": []
+            },
+            {
+                "id": 163,
+                "question": "3.这首歌曲的歌名是：",
+                "type": "1",
+                "path": "/Users/mac/code/py/py/yangying/综合模拟测试（六）:20da1ff5-8ea6-4c9b-8cf8-c71eb5294ed8",
+                "items": [
+                    {
+                        "text": "普茹莱弟弟"
+                    },
+                    {
+                        "text": "旗正飘飘"
+                    },
+                    {
+                        "text": "听妈妈讲那过去的事情"
+                    },
+                    {
+                        "text": "让我们荡起双桨"
+                    }
+                ],
+                "audio": "audio/968_2018_05_03_audio_1525318662653.mp3",
+                "answerFlow": [
+                    [
+                        {
+                            "name": "showTitle",
+                            "order": 0,
+                            "ratio": [
+                                5,
+                                4,
+                                2
+                            ],
+                            "value": "3.这首歌曲的歌名是：",
+                            "valueType": "string"
+                        },
+                        {
+                            "name": "showOptions",
+                            "order": 0,
+                            "value": "[[\"A\",\"普茹莱弟弟\",\"\"],[\"B\",\"旗正飘飘\",\"\"],[\"C\",\"听妈妈讲那过去的事情\",\"\"],[\"D\",\"让我们荡起双桨\",\"\"]]",
+                            "valueType": "matrix"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "wait",
+                            "order": 1,
+                            "value": "0.5",
+                            "valueType": "float"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 2,
+                            "value": "audio/1523_2018_05_29_audio_1527563802184.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 3,
+                            "value": "audio/75_2018_01_29_audio_20180129163415.mp3",
+                            "valueType": "resource"
+                        },
+                        {
+                            "name": "showTips",
+                            "order": 3,
+                            "value": "第一遍",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 4,
+                            "value": "audio/968_2018_05_03_audio_1525318662653.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 5,
+                            "value": "audio/76_2018_01_29_audio_20180129163420.mp3",
+                            "valueType": "resource"
+                        },
+                        {
+                            "name": "showTips",
+                            "order": 5,
+                            "value": "第二遍",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 6,
+                            "value": "audio/968_2018_05_03_audio_1525318662653.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "showTips",
+                            "order": 7,
+                            "value": "请答题",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "finish",
+                            "order": 8,
+                            "value": "",
+                            "valueType": ""
+                        }
+                    ]
+                ],
+                "children": []
+            },
+            {
+                "id": 164,
+                "question": "4.这首乐曲的曲名是：",
+                "type": "1",
+                "path": "/Users/mac/code/py/py/yangying/综合模拟测试（六）:20da1ff5-8ea6-4c9b-8cf8-c71eb5294ed8",
+                "items": [
+                    {
+                        "text": "安妮特拉舞曲"
+                    },
+                    {
+                        "text": "《绿袖子》主题幻想曲"
+                    },
+                    {
+                        "text": "钟"
+                    },
+                    {
+                        "text": "G大调小步舞曲"
+                    }
+                ],
+                "audio": "audio/970_2018_05_03_audio_1525318693648.mp3",
+                "answerFlow": [
+                    [
+                        {
+                            "name": "showTitle",
+                            "order": 0,
+                            "ratio": [
+                                5,
+                                4,
+                                2
+                            ],
+                            "value": "4.这首乐曲的曲名是：",
+                            "valueType": "string"
+                        },
+                        {
+                            "name": "showOptions",
+                            "order": 0,
+                            "value": "[[\"A\",\"安妮特拉舞曲\",\"\"],[\"B\",\"《绿袖子》主题幻想曲\",\"\"],[\"C\",\"钟\",\"\"],[\"D\",\"G大调小步舞曲\",\"\"]]",
+                            "valueType": "matrix"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "wait",
+                            "order": 1,
+                            "value": "0.5",
+                            "valueType": "float"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 2,
+                            "value": "audio/1524_2018_05_29_audio_1527563802194.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 3,
+                            "value": "audio/75_2018_01_29_audio_20180129163415.mp3",
+                            "valueType": "resource"
+                        },
+                        {
+                            "name": "showTips",
+                            "order": 3,
+                            "value": "第一遍",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 4,
+                            "value": "audio/970_2018_05_03_audio_1525318693648.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 5,
+                            "value": "audio/76_2018_01_29_audio_20180129163420.mp3",
+                            "valueType": "resource"
+                        },
+                        {
+                            "name": "showTips",
+                            "order": 5,
+                            "value": "第二遍",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 6,
+                            "value": "audio/970_2018_05_03_audio_1525318693648.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "showTips",
+                            "order": 7,
+                            "value": "请答题",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "finish",
+                            "order": 8,
+                            "value": "",
+                            "valueType": ""
+                        }
+                    ]
+                ],
+                "children": []
+            },
+            {
+                "id": 165,
+                "question": "5.这首歌曲的演唱形式是：",
+                "type": "1",
+                "path": "/Users/mac/code/py/py/yangying/综合模拟测试（六）:20da1ff5-8ea6-4c9b-8cf8-c71eb5294ed8",
+                "items": [
+                    {
+                        "text": "女声二重唱"
+                    },
+                    {
+                        "text": "男女声五重唱"
+                    },
+                    {
+                        "text": "男声四重唱"
+                    },
+                    {
+                        "text": "男女声二重唱"
+                    }
+                ],
+                "audio": "audio/972_2018_05_03_audio_1525318727722.mp3",
+                "answerFlow": [
+                    [
+                        {
+                            "name": "showTitle",
+                            "order": 0,
+                            "ratio": [
+                                5,
+                                4,
+                                2
+                            ],
+                            "value": "5.这首歌曲的演唱形式是：",
+                            "valueType": "string"
+                        },
+                        {
+                            "name": "showOptions",
+                            "order": 0,
+                            "value": "[[\"A\",\"女声二重唱\",\"\"],[\"B\",\"男女声五重唱\",\"\"],[\"C\",\"男声四重唱\",\"\"],[\"D\",\"男女声二重唱\",\"\"]]",
+                            "valueType": "matrix"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "wait",
+                            "order": 1,
+                            "value": "0.5",
+                            "valueType": "float"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 2,
+                            "value": "audio/1525_2018_05_29_audio_1527563802204.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 3,
+                            "value": "audio/75_2018_01_29_audio_20180129163415.mp3",
+                            "valueType": "resource"
+                        },
+                        {
+                            "name": "showTips",
+                            "order": 3,
+                            "value": "第一遍",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 4,
+                            "value": "audio/972_2018_05_03_audio_1525318727722.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 5,
+                            "value": "audio/76_2018_01_29_audio_20180129163420.mp3",
+                            "valueType": "resource"
+                        },
+                        {
+                            "name": "showTips",
+                            "order": 5,
+                            "value": "第二遍",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 6,
+                            "value": "audio/972_2018_05_03_audio_1525318727722.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "showTips",
+                            "order": 7,
+                            "value": "请答题",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "finish",
+                            "order": 8,
+                            "value": "",
+                            "valueType": ""
+                        }
+                    ]
+                ],
+                "children": []
+            },
+            {
+                "id": 166,
+                "question": "6.这首歌曲的演唱形式是：",
+                "type": "1",
+                "path": "/Users/mac/code/py/py/yangying/综合模拟测试（六）:20da1ff5-8ea6-4c9b-8cf8-c71eb5294ed8",
+                "items": [
+                    {
+                        "text": "男女声二重唱"
+                    },
+                    {
+                        "text": "女声二重唱"
+                    },
+                    {
+                        "text": "男声四重唱"
+                    },
+                    {
+                        "text": "男女声五重唱"
+                    }
+                ],
+                "audio": "audio/974_2018_05_03_audio_1525318765860.mp3",
+                "answerFlow": [
+                    [
+                        {
+                            "name": "showTitle",
+                            "order": 0,
+                            "ratio": [
+                                5,
+                                4,
+                                2
+                            ],
+                            "value": "6.这首歌曲的演唱形式是：",
+                            "valueType": "string"
+                        },
+                        {
+                            "name": "showOptions",
+                            "order": 0,
+                            "value": "[[\"A\",\"男女声二重唱\",\"\"],[\"B\",\"女声二重唱\",\"\"],[\"C\",\"男声四重唱\",\"\"],[\"D\",\"男女声五重唱\",\"\"]]",
+                            "valueType": "matrix"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "wait",
+                            "order": 1,
+                            "value": "0.5",
+                            "valueType": "float"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 2,
+                            "value": "audio/1526_2018_05_29_audio_1527563802213.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 3,
+                            "value": "audio/75_2018_01_29_audio_20180129163415.mp3",
+                            "valueType": "resource"
+                        },
+                        {
+                            "name": "showTips",
+                            "order": 3,
+                            "value": "第一遍",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 4,
+                            "value": "audio/974_2018_05_03_audio_1525318765860.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 5,
+                            "value": "audio/76_2018_01_29_audio_20180129163420.mp3",
+                            "valueType": "resource"
+                        },
+                        {
+                            "name": "showTips",
+                            "order": 5,
+                            "value": "第二遍",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "playAudio",
+                            "order": 6,
+                            "value": "audio/974_2018_05_03_audio_1525318765860.mp3",
+                            "valueType": "resource"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "showTips",
+                            "order": 7,
+                            "value": "请答题",
+                            "valueType": "string"
+                        }
+                    ],
+                    [
+                        {
+                            "name": "finish",
+                            "order": 8,
+                            "value": "",
+                            "valueType": ""
+                        }
+                    ]
+                ],
+                "children": []
+            }
+        ]
+    }
+]

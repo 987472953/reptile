@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Verovio Example</title>
+    <script src="./verovio-toolkit.js"></script>
+</head>
+<body>
+<div id="music-score"></div>
+</body>
+<script type="text/javascript">
+    // 获取要呈现音乐谱的容器元素
+    var musicScoreContainer = document.getElementById("music-score");
+    console.log(musicScoreContainer);
+    // 创建 Verovio Toolkit 渲染器实例
+    var vrvToolkit = new verovio.toolkit();
+    console.log(vrvToolkit.getVersion());
+
+    // MEI 文件的内容（假设您已经有了 MEI 数据）
+    var meiData = `
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="http://music-encoding.org/schema/3.0.0/mei-all.rng" type="application/xml" schematypens="http://relaxng.org/ns/structure/1.0"?><?xml-model href="http://music-encoding.org/schema/3.0.0/mei-all.rng" type="application/xml" schematypens="http://purl.oclc.org/dsdl/schematron"?><mei xmlns="http://www.music-encoding.org/ns/mei" meiversion="3.0.0">
+    <meiHead>
+        <fileDesc>
+            <titleStmt>
+                <title/>
+            </titleStmt>
+            <pubStmt/>
+        </fileDesc>
+        <encodingDesc xml:id="encodingdesc-0000002017419635">
+            <appInfo xml:id="appinfo-0000000366885165">
+                <application xml:id="application-0000000525050622" isodate="2018-12-14T14:52:26" version="1.1.6-[undefined]">
+                    <name xml:id="name-0000001492595342">Verovio</name>
+                    <p xml:id="p-0000001045323061">Transcoded from MusicXML</p>
+                </application>
+            </appInfo>
+        </encodingDesc>
+    </meiHead>
+    <music>
+        <body>
+            <mdiv>
+                <score>
+                    <scoreDef xml:id="scoredef-0000000019582811">
+                        <staffGrp xml:id="staffgrp-0000000632061208">
+                            <staffDef xml:id="staffdef-0000001826189066" n="1" clef.shape="G" clef.line="2" key.mode="major" key.sig="0" meter.count="4" meter.unit="4" lines="5" label="      "/>
+                        </staffGrp>
+                    </scoreDef>
+                    <section xml:id="section-0000000901705778">
+                        <pb xml:id="pb-0000001234958308"/>
+                        <measure xml:id="measure-0000000269495457" n="1">
+                            <staff xml:id="staff-0000000708405837" n="1">
+                                <layer xml:id="layer-0000001116273119" n="1">
+                                    <note xml:id="note-0000001116368681" dur="4" oct="4" pname="c" color="#000000" stem.dir="up"/>
+                                    <note xml:id="note-0000000481028947" dur="4" oct="4" pname="c" color="#000000" stem.dir="up"/>
+                                    <note xml:id="note-0000001748334328" dur="4" oct="4" pname="g" color="#000000" stem.dir="up"/>
+                                    <note xml:id="note-0000001921868255" dur="4" oct="4" pname="g" color="#000000" stem.dir="up"/>
+                                </layer>
+                            </staff>
+
+                            <dynam xml:id="dynam-0000000364275488" staff="1" startid="#note-0000001116368681">f</dynam>
+
+                            <tempo xml:id="tempo-0000001660871566" staff="1" startid="#note-0000001116368681" mm="120" mm.unit="4">
+Allegro</tempo>
+                        </measure>
+                        <measure xml:id="measure-0000000159734365" n="2">
+                            <staff xml:id="staff-0000000019529025" n="1">
+                                <layer xml:id="layer-0000000642967999" n="1">
+                                    <note xml:id="note-0000000438610487" dur="4" oct="4" pname="a" color="#000000" stem.dir="up"/>
+                                    <note xml:id="note-0000000076632635" dur="4" oct="4" pname="a" color="#000000" stem.dir="up"/>
+                                    <note xml:id="note-0000000305789490" dur="4" oct="4" pname="g" color="#000000" stem.dir="up" visible="false"/>
+                                    <rest xml:id="rest-0000000831498406" dur="4"/>
+                                </layer>
+                            </staff>
+
+                        </measure>
+                        <measure xml:id="measure-0000001681240762" n="3">
+                            <staff xml:id="staff-0000001299334658" n="1">
+                                <layer xml:id="layer-0000001124362936" n="1">
+                                    <note xml:id="note-0000000102833968" dur="4" oct="4" pname="f" color="#000000" stem.dir="up"/>
+                                    <note xml:id="note-0000000591479593" dur="4" oct="4" pname="f" color="#000000" stem.dir="up"/>
+                                    <note xml:id="note-0000000674647685" dur="4" oct="4" pname="e" color="#000000" stem.dir="up"/>
+                                    <note xml:id="note-0000000247702283" dur="4" oct="4" pname="e" color="#000000" stem.dir="up"/>
+                                </layer>
+                            </staff>
+
+                        </measure>
+                        <measure xml:id="measure-0000000378735377" n="4">
+                            <staff xml:id="staff-0000001633226837" n="1">
+                                <layer xml:id="layer-0000001693248885" n="1">
+                                    <note xml:id="note-0000000148957757" dur="4" oct="4" pname="d" color="#000000" stem.dir="up"/>
+                                    <note xml:id="note-0000000317241596" dur="4" oct="4" pname="d" color="#000000" stem.dir="up"/>
+                                    <note xml:id="note-0000001227005999" dur="4" oct="4" pname="c" color="#000000" stem.dir="up"/>
+                                    <rest xml:id="rest-0000000819022735" dur="4"/>
+                                </layer>
+                            </staff>
+                        </measure>
+                        <sb xml:id="sb-0000000157636662"/>
+                        <measure xml:id="measure-0000000852804895" n="5">
+                            <staff xml:id="staff-0000000210774591" n="1">
+                                <layer xml:id="layer-0000000675570709" n="1">
+                                    <note xml:id="note-0000000561310842" dur="4" oct="4" pname="g" color="#000000" stem.dir="up"/>
+                                    <note xml:id="note-0000001127851632" dur="4" oct="4" pname="g" color="#000000" stem.dir="up"/>
+                                    <note xml:id="note-0000000961066991" dur="4" oct="4" pname="f" color="#000000" stem.dir="up"/>
+                                    <note xml:id="note-0000001255399542" dur="4" oct="4" pname="f" color="#000000" stem.dir="up"/>
+                                </layer>
+                            </staff>
+
+                        </measure>
+                        <measure xml:id="measure-0000001175451658" n="6">
+                            <staff xml:id="staff-0000001464646956" n="1">
+                                <layer xml:id="layer-0000000273037827" n="1">
+                                    <note xml:id="note-0000001256121353" dur="4" oct="4" pname="e" color="#000000" stem.dir="up"/>
+                                    <note xml:id="note-0000000169968204" dur="4" oct="4" pname="e" color="#000000" stem.dir="up"/>
+                                    <note xml:id="note-0000002101688272" dur="4" oct="4" pname="d" color="#000000" stem.dir="up"/>
+                                    <rest xml:id="rest-0000000891352059" dur="4"/>
+                                </layer>
+                            </staff>
+
+                        </measure>
+                        <measure xml:id="measure-0000000516423891" n="7">
+                            <staff xml:id="staff-0000001602117883" n="1">
+                                <layer xml:id="layer-0000001072726570" n="1">
+                                    <note xml:id="note-0000001405472872" dur="4" oct="4" pname="g" color="#000000" stem.dir="up"/>
+                                    <note xml:id="note-0000001155006370" dur="4" oct="4" pname="g" color="#000000" stem.dir="up"/>
+                                    <note xml:id="note-0000001762356751" dur="4" oct="4" pname="f" color="#000000" stem.dir="up"/>
+                                    <note xml:id="note-0000000024348113" dur="4" oct="4" pname="f" color="#000000" stem.dir="up"/>
+                                </layer>
+                            </staff>
+
+                        </measure>
+                        <measure xml:id="measure-0000001443147231" n="8">
+                            <staff xml:id="staff-0000001820820448" n="1">
+                                <layer xml:id="layer-0000001878696433" n="1">
+                                    <note xml:id="note-0000001467244278" dur="4" oct="4" pname="e" color="#000000" stem.dir="up"/>
+                                    <note xml:id="note-0000000564688859" dur="4" oct="4" pname="e" color="#000000" stem.dir="up"/>
+                                    <note xml:id="note-0000000247636676" dur="4" oct="4" pname="d" color="#000000" stem.dir="up"/>
+                                    <rest xml:id="rest-0000000505366298" dur="4"/>
+                                </layer>
+                            </staff>
+                        </measure>
+                        <sb xml:id="sb-0000000032826563"/>
+                        <measure xml:id="measure-0000000332601007" n="9">
+                            <staff xml:id="staff-0000001951314933" n="1">
+                                <layer xml:id="layer-0000000819421068" n="1">
+                                    <note xml:id="note-0000000327912807" dur="4" oct="4" pname="c" color="#000000" stem.dir="up"/>
+                                    <note xml:id="note-0000001187832933" dur="4" oct="4" pname="c" color="#000000" stem.dir="up"/>
+                                    <note xml:id="note-0000000434294171" dur="4" oct="4" pname="g" color="#000000" stem.dir="up"/>
+                                    <note xml:id="note-0000000279098283" dur="4" oct="4" pname="g" color="#000000" stem.dir="up"/>
+                                </layer>
+                            </staff>
+
+                        </measure>
+                        <measure xml:id="measure-0000000878479070" n="10">
+                            <staff xml:id="staff-0000001877205116" n="1">
+                                <layer xml:id="layer-0000000199783905" n="1">
+                                    <note xml:id="note-0000001598833759" dur="4" oct="4" pname="a" color="#000000" stem.dir="up"/>
+                                    <note xml:id="note-0000000275563528" dur="4" oct="4" pname="a" color="#000000" stem.dir="up"/>
+                                    <note xml:id="note-0000001670060339" dur="4" oct="4" pname="g" color="#000000" stem.dir="up"/>
+                                    <rest xml:id="rest-0000000170076600" dur="4"/>
+                                </layer>
+                            </staff>
+                        </measure>
+                        <measure xml:id="measure-0000000079394813" n="11">
+                            <staff xml:id="staff-0000000182209401" n="1">
+                                <layer xml:id="layer-0000001442991421" n="1">
+                                    <note xml:id="note-0000001748895234" dur="4" oct="4" pname="f" color="#000000" stem.dir="up"/>
+                                    <note xml:id="note-0000001095751679" dur="4" oct="4" pname="f" color="#000000" stem.dir="up"/>
+                                    <note xml:id="note-0000000500650043" dur="4" oct="4" pname="e" color="#000000" stem.dir="up"/>
+                                    <note xml:id="note-0000001126835969" dur="4" oct="4" pname="e" color="#000000" stem.dir="up"/>
+                                </layer>
+                            </staff>
+                        </measure>
+                        <measure xml:id="measure-0000001374849962" n="12" right="end">
+                            <staff xml:id="staff-0000000883284281" n="1">
+                                <layer xml:id="layer-0000000032820153" n="1">
+                                    <note xml:id="note-0000000124188944" dur="4" oct="4" pname="d" color="#000000" stem.dir="up"/>
+                                    <note xml:id="note-0000000334634392" dur="4" oct="4" pname="d" color="#000000" stem.dir="up"/>
+                                    <note xml:id="note-0000000308383681" dur="4" oct="4" pname="c" color="#000000" stem.dir="up"/>
+                                    <rest xml:id="rest-0000001794249283" dur="4"/>
+                                </layer>
+                            </staff>
+                        </measure>
+                    <sb/></section>
+                </score>
+            </mdiv>
+        </body>
+    </music>
+</mei>
+`;
+
+    // 渲染 MEI 数据到容器
+    vrvToolkit.loadData(meiData);
+    let noteBoundingBox = vrvToolkit.getElementAttr("id#dynam-0000000364275488");
+
+    var svg = vrvToolkit.renderToSVG(1, {});
+    console.log(svg);
+    var svgContainer = document.createElement("div");
+
+    // 将 SVG 字符串赋值给新创建的 <div> 元素的 innerHTML
+    svgContainer.innerHTML = svg;
+
+    // 将包含 SVG 的 <div> 元素添加到页面中
+    musicScoreContainer.appendChild(svgContainer);
+
+
+</script>
+
+</html>
