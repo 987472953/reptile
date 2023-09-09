@@ -1,7 +1,7 @@
 import json
+import os
 import traceback
 import zipfile
-import os
 
 from py.央音svg import get_add_frame_svg, get_add_icon_svg, sava_svg
 
@@ -24,7 +24,8 @@ def add_to_file_dict(file_dict_: dict, f: dict, path):
     file_dict_[id] = data_file
 
 
-def build_file_dict(file_dict_, json_data, path):
+def build_file_dict(json_data, path):
+    file_dict_ = {}
     add_to_file_dict(file_dict_, json_data, path)
     children_ = json_data['questions']
     for c in children_:
@@ -33,14 +34,13 @@ def build_file_dict(file_dict_, json_data, path):
             add_to_file_dict(file_dict_, cc, path)
             for ccc in cc['questions']:
                 add_to_file_dict(file_dict_, ccc, path)
+    return file_dict_
 
-    # print(json.dumps(file_dict_, indent=4, ensure_ascii=False))
 
-
-def unzip(zip_file_i: str):
+def unzip(zip_file_name: str):
     # 指定要解压的 ZIP 文件路径和解压目标路径
-    zip_file_path = current_directory + '/' + zip_file_i
-    extract_to_folder = current_directory + '/' + zip_file_i[:-4]
+    zip_file_path = current_directory + '/' + zip_file_name
+    extract_to_folder = current_directory + '/' + zip_file_name[:-4]
     if not os.path.exists(extract_to_folder):
         # 打开 ZIP 文件
         with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
@@ -65,8 +65,7 @@ def get_root_ids(file_dict_):
 
 
 # 遍历数据，建立父子关系
-def build_base_question(read_value: dict, param: list, path):
-    global count, ok_count
+def build_base_question(read_value: dict, param: list, path: str):
     if not param:
         return
     name_list = []
@@ -80,8 +79,7 @@ def build_base_question(read_value: dict, param: list, path):
             for p in pp:
                 if p['name'] == "playAudio" and len(pp) == 1:
                     if p['valueType'] != 'resource':
-                        print("playAudio valueType 不为 resource")
-                        assert False
+                        assert False, "playAudio valueType 不为 resource"
                     read_value['audio'] = p['value']
                     audio_set.add(p['value'])
                 elif p['name'] == "wait" and len(pp) == 1:
@@ -90,7 +88,7 @@ def build_base_question(read_value: dict, param: list, path):
                     if pp[1]['value'] in ["第一遍", "第二遍"]:
                         break
                     else:
-                        assert False
+                        assert False, "playAudio 第二个参数不为 第一遍 或 第二遍"
                 elif p['name'] == "showTitle":
                     if p['valueType'] != 'string':
                         print("showTitle valueType 不为 string")
@@ -98,23 +96,23 @@ def build_base_question(read_value: dict, param: list, path):
                     question_set.add(p['value'])
                 elif p['name'] == "showImage":
                     if "img" in read_value:
-                        assert False
+                        assert False, "showImage 与 showScore 同时存在"
                     read_value['img'] = p['value']
                 elif p['name'] == "showOptions":
                     if p['valueType'] == 'matrix':
                         loads = json.loads(p['value'])
                         read_value['items'] = items = []
                         for load in loads:
+                            if len(load) != 3:
+                                assert False, "showOptions 选项长度有问题"
                             if load[1] and not load[2]:
                                 items.append({"text": load[1]})
                             elif load[2] and not load[1]:
                                 items.append({"image": load[2]})
                             else:
-                                assert False
-                            if len(load) != 3:
-                                assert False
+                                assert False, "showOptions 选型都为空"
                     else:
-                        assert False
+                        assert False, "showOptions valueType 不为 matrix"
                 elif p['name'] == 'showTips' and p['value'] == '请答题':
                     if len(pp) == 1:
                         break
@@ -122,12 +120,17 @@ def build_base_question(read_value: dict, param: list, path):
                         if pp[1]['name'] == "countdown":
                             break
                         else:
-                            assert False
+                            assert False, "showTips 第二个参数不为 countdown"
+                elif p['name'] == 'countdown' and len(pp) == 2:
+                    if pp[1]['value'] == "请答题":
+                        break
+                    else:
+                        assert False, "countdown 第二个参数不为 请答题"
                 elif p['name'] == 'finish' and len(pp) == 1:
                     break
                 elif p['name'] == 'showScore':
                     if "img" in read_value:
-                        assert False
+                        assert False, "showImage 与 showScore 同时存在"
                     read_value["img"] = p['value'][:-3] + 'svg'
                     show_score.append(p)
                     continue
@@ -154,19 +157,9 @@ def build_base_question(read_value: dict, param: list, path):
                     except Exception as e:
                         traceback.print_exc()
                         print("errorSvgIcon", json_loads, join)
-                elif p['name'] == 'showTips' and p['value'] == '请答题' and len(pp) == 2:
-                    if pp[1]['name'] == "countdown":
-                        break
-                    else:
-                        assert False
-                elif p['name'] == 'countdown' and len(pp) == 2:
-                    if pp[1]['value'] == "请答题":
-                        break
-                    else:
-                        assert False
+
                 else:
-                    print(p)
-                    assert False
+                    assert False, "不支持的参数"
                 for pn in pp:
                     name_list.append(pn['name'])
 
@@ -182,8 +175,8 @@ def build_base_question(read_value: dict, param: list, path):
         assert len(question_set) <= 1, "question_set 长度大于1"
 
     except Exception as e:
-        # traceback.print_exc()
-        # print(json.dumps(param, ensure_ascii=False, indent=4))
+        traceback.print_exc()
+        print(json.dumps(param, ensure_ascii=False, indent=4))
         read_value["support"] = False
         if svg:
             try:
@@ -193,23 +186,6 @@ def build_base_question(read_value: dict, param: list, path):
                 print("errorSaveSvg", svg)
                 traceback.print_exc()
                 exit(-2)
-
-        # exit(1)
-    # # # elements_to_check = ["record", "recordRhythm", "addBeat", "showDrum", "addFrame", "showScore"]
-    # elements_to_check = ["addFrame"]
-    #
-    # hava = False
-    # # for element in elements_to_check:
-    # #     if element in name_list:
-    # #         hava = True
-    # #         break
-    # if "addFrame" in name_list and "showScore" not in name_list:
-    #     hava = True
-    #
-    # if hava:
-    #     count += 1
-    # else:
-    #     ok_count += 1
 
 
 # 定义一个函数来递归构建层级关系
@@ -222,44 +198,40 @@ def build_hierarchy(parent_id_, level):
     return []
 
 
-# 遍历当前目录中的所有文件
-zip_files = [file for file in os.listdir(current_directory) if file.endswith('.zip')]
+if __name__ == '__main__':
+    # 遍历当前目录中的所有文件
+    zip_files = [file for file in os.listdir(current_directory) if file.endswith('.zip')]
 
-for zip_file in zip_files:
-    file_dict = {}
-    unzip_file_path = unzip(zip_file)
-    with open(os.path.join(unzip_file_path, "data.json"), "r") as f:
-        build_file_dict(file_dict, json.loads(f.read()), unzip_file_path)
+    for zip_file in zip_files:
+        unzip_file_path = unzip(zip_file)
+        with open(os.path.join(unzip_file_path, "data.json"), "r") as f:
+            file_dict = build_file_dict(json.loads(f.read()), unzip_file_path)
 
-    # 创建一个字典用于存储父子关系
-    parent_child_relationship = {}
+        # 创建一个字典用于存储父子关系
+        parent_child_relationship = {}
 
-    options_set = set()
+        options_set = set()
 
-    for key, value in file_dict.items():
-        parent_id = value["parentId"]
-        if parent_id not in parent_child_relationship:
-            parent_child_relationship[parent_id] = []
+        for key, value in file_dict.items():
+            parent_id = value["parentId"]
+            if parent_id not in parent_child_relationship:
+                parent_child_relationship[parent_id] = []
 
-        read_value = {
-            'id': value['id'],
-            'question': value['title'],
-            'type': value['type'],
-        }
-        build_base_question(read_value, value['answerFlow'], value['path'])
-        read_value['answerFlow'] = value['answerFlow']
-        if "supportr " in read_value:
-            continue
-        parent_child_relationship[parent_id].append(read_value)
-    # print(parent_child_relationship)
+            read_value = {
+                'id': value['id'],
+                'question': value['title'],
+                'type': value['type'],
+                'answerFlow': value['answerFlow'],
+            }
+            build_base_question(read_value, value['answerFlow'], value['path'])
+            parent_child_relationship[parent_id].append(read_value)
 
-    root_ids = get_root_ids(file_dict)
-    # print(root_ids)
+        root_ids = get_root_ids(file_dict)
 
-    for root_id in root_ids:
-        # 构建整个层级关系
-        hierarchy = build_hierarchy(root_id, 0)
+        for root_id in root_ids:
+            # 构建整个层级关系
+            hierarchy = build_hierarchy(root_id, 0)
 
-        # 将层级关系写入文件
-        with open(os.path.join(unzip_file_path, "my-data.json"), "w") as f:
-            f.write(json.dumps(hierarchy, indent=4, ensure_ascii=False))
+            # 将层级关系写入文件
+            with open(os.path.join(unzip_file_path, "my-data.json"), "w") as f:
+                f.write(json.dumps(hierarchy, indent=4, ensure_ascii=False))
