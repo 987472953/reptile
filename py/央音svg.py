@@ -1,41 +1,51 @@
+import re
+
 from lxml import etree
 
-path = "yangying/中级综合模拟测试（五）/score/"
+path = "yangying/高级综合模拟测试（四）/score/"
 
 
 # 读取 SVG 文件
 
 def get_x_node(node, min_x=100000000, max_x=-1):
     if node is None:
-        return None
+        return None, None
 
     if 'x' in node.attrib:
         x = int(node.attrib['x'])
-        if x < min_x:
-            min_x = x
-        if x > max_x:
-            max_x = x
+        min_x = min(x, min_x)
+        max_x = max(x, max_x)
+    if 'd' in node.attrib:
+        split = node.attrib['d'].split(" ")
+        for i in range(0, len(split), 2):
+            x = int(split[i][1:])
+            min_x = min(x, min_x)
+            max_x = max(x, max_x)
 
     for child in node:
         child_min_x, child_max_x = get_x_node(child, min_x, max_x)
-        if child_min_x and child_min_x < min_x:
-            min_x = child_min_x
-        if child_max_x and child_max_x > max_x:
-            max_x = child_max_x
+        if child_min_x:
+            min_x = min(child_min_x, min_x)
+        if child_max_x:
+            max_x = max(child_max_x, max_x)
 
     return min_x, max_x
 
 
 def get_y_node(node, min_y=100000000, max_y=-1):
     if node is None:
-        return None
+        return None, None
 
     if 'y' in node.attrib:
         y = int(node.attrib['y'])
-        if y < min_y:
-            min_y = y
-        if y > max_y:
-            max_y = y
+        min_y = min(y, min_y)
+        max_y = max(y, max_y)
+    if 'd' in node.attrib:
+        split = node.attrib['d'].split(" ")
+        for i in range(1, len(split), 2):
+            y = int(split[i])
+            min_y = min(y, min_y)
+            max_y = max(y, max_y)
 
     for child in node:
         child_min_x, child_max_x = get_y_node(child, min_y, max_y)
@@ -85,12 +95,12 @@ def get_add_frame_svg(tree, node_id_list: list, path):
         node_id2 = node_ids[1] if len(node_ids) > 1 else None
         if node_id1 is None and node_id2 is None:
             assert False
-        node1 = root.xpath('//*[@id="%s"]' % node_id1)
+        node1 = get_node_by_id(node_id1, root)
         if len(node1) == 0:
             continue
         node2 = None
         if node_id2 is not None:
-            node2 = root.xpath('//*[@id="%s"]' % node_id2)
+            node2 = get_node_by_id(node_id2, root)
         if node_id2 and not node2:
             print(f'Element with ID "{node_id2}" not found in the SVG.')
             assert False
@@ -156,6 +166,20 @@ def get_add_frame_svg(tree, node_id_list: list, path):
     return tree
 
 
+def get_node_by_id(node_id: str, root):
+    if node_id.startswith("."):
+        match = re.match(r'\.(\w+)\[(\d+)\]', node_id)
+        if match:
+            class_name = match.group(1)  # 获取类名
+            index = int(match.group(2))  # 获取索引
+            return [root.xpath('//*[@class="%s"]' % class_name)[index]]
+        else:
+            exit(-2)
+
+    nodes = root.xpath('//*[@id="%s"]' % node_id)
+    return nodes
+
+
 def get_add_icon_svg(tree, icon_list: list, path):
     if not tree:
         tree = etree.parse(path)
@@ -192,15 +216,17 @@ def get_add_icon_svg(tree, icon_list: list, path):
 
 def sava_svg(tree, path):
     # 保存更新后的 SVG 文件
-    svg_ = path[:-4] + "-new1.svg"
+    svg_ = path[:-4] + "-new.svg"
     tree.write(svg_, pretty_print=True)
 
 
-# 要创建框的元素的 ID
-target_id = [["note-0000000539057304", "note-0000000143487917"], ["note-0000000396965663", "note-0000001960306822"]]
-# target_id2 = 'note-0000001998559704'
-svg = get_add_frame_svg(None, target_id, path + "7030.svg")
-get_add_icon_svg(svg, [
-    {"image": "image/981_2018_05_03_image_981_1525324656942_25X25.png", "selector": "note-0000001125399926"}],
-                 path + "7030.svg")
-sava_svg(svg, path + "7030.svg")
+if __name__ == '__main__':
+    # 要创建框的元素的 ID
+    target_id = [[".beam[3]", ".beam[4]"]]
+    # target_id2 = 'note-0000001998559704'
+    svg_path = "74060.svg"
+    svg = get_add_frame_svg(None, target_id, path + svg_path)
+    # get_add_icon_svg(svg, [
+    #     {"image": "image/981_2018_05_03_image_981_1525324656942_25X25.png", "selector": "note-0000001125399926"}],
+    #                  path + svg_path)
+    sava_svg(svg, path + svg_path)

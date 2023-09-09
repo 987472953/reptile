@@ -29,7 +29,7 @@ def downloadFile(id, title):
             print(download_response.content.decode("utf-8"))
             return
         print("Downloading...")
-        file_name = str(title) + ".zip"
+        file_name = "yangying/" + str(title) + ".zip"
         # 如果文件存在 添加UUID
         if os.path.exists(file_name):
             file_name = str(title) + ":" + str(uuid.uuid4()) + ".zip"
