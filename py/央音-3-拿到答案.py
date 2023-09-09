@@ -2,12 +2,12 @@
 import json
 import os
 
+import requests
+
 current_directory = os.getcwd() + "/yangying"
 
 
 def init(id):
-    import requests
-
     url = "https://xl.kaoji.com/exercise/rest/exam/initAnswerExerciseId?unitId={}".format(id)
     headers = {
         "Host": "xl.kaoji.com",
@@ -23,13 +23,12 @@ def init(id):
 
     if response.status_code == 200:
         print("init Request successful!")
-        # 处理响应内容，例如：
-        # print(response.text)
+        print(response.text)
     else:
         print(f"Request failed with status code {response.status_code}")
 
+
 def do_answer(unitId, questionId):
-    import requests
     import json
 
     url = "https://xl.kaoji.com/exercise/rest/exam/answer"
@@ -54,15 +53,12 @@ def do_answer(unitId, questionId):
 
     if response.status_code == 200:
         print("do_answer Request successful!")
-        # 处理响应内容，例如：
-        # print(response.text)
+        print(response.text)
     else:
         print(f"Request failed with status code {response.status_code}")
 
 
 def save_answer(unitId):
-    import requests
-
     url = "https://xl.kaoji.com/exercise/rest/exam/save?unitId={}".format(unitId)
 
     headers = {
@@ -79,7 +75,6 @@ def save_answer(unitId):
 
     if response.status_code == 200:
         print("save_answer Request successful!")
-        # 处理响应内容，例如：
         print(response.text)
     else:
         print(response.text)
@@ -87,8 +82,6 @@ def save_answer(unitId):
 
 
 def get_answer(unitId):
-    import requests
-
     url = "https://xl.kaoji.com/exercise/rest/exam/lastAnswerDetail?unitId={}".format(unitId)
 
     headers = {
@@ -104,14 +97,12 @@ def get_answer(unitId):
     response = requests.post(url, headers=headers)
 
     if response.status_code == 200:
-        # 处理响应内容
         return response.json()
     else:
         print("请求失败，HTTP状态码:", response.status_code)
 
-def get(unitId):
-    import requests
 
+def get(unitId):
     url = "https://xl.kaoji.com/exercise/rest/exam/answerUnits?unitId={}".format(unitId)
 
     headers = {

@@ -19,88 +19,61 @@ proxies = {
     'http': "http://127.0.0.1:7890",
     'https': "http://127.0.0.1:7890",
 }
-# 1 5 9
 
 
+def build_my_data(file_dict: dict, f: dict):
+    fid = f['fId']
+    data_file = file_dict.get(fid) if file_dict.get(fid) else {}
+    data_file['id'] = f.get('fId', data_file.get('id'))
+    data_file['title'] = f.get('fTitle', data_file.get('title'))
+    data_file['enTitle'] = f.get('fEntitle', data_file.get('enTitle'))
+    data_file['rootId'] = f.get('fRootId', data_file.get('rootId'))
+    data_file['parentId'] = f.get('fParentId', data_file.get('parentId'))
+    data_file['level'] = f.get('fLevel', data_file.get('level'))
+    data_file['questionId'] = f.get('fQuestionId', data_file.get('questionId'))
+    data_file['question'] = f.get('question', data_file.get('question'))
+    data_file['free'] = f.get('fFree', data_file.get('free'))
 
-def get(menuId, level):
+    file_dict[fid] = data_file
+
+
+def get_and_download_zip(menuId: int, level: str):
     file_dict = {}
     params = {
         'menuId': menuId
     }
 
-    def method_name(file_dict: dict, f: dict):
-        fid = f['fId']
-        data_file = file_dict.get(fid) if file_dict.get(fid) else {}
-        data_file['id'] = f.get('fId', data_file.get('id'))
-        data_file['title'] = f.get('fTitle', data_file.get('title'))
-        data_file['enTitle'] = f.get('fEntitle', data_file.get('enTitle'))
-        data_file['rootId'] = f.get('fRootId', data_file.get('rootId'))
-        data_file['parentId'] = f.get('fParentId', data_file.get('parentId'))
-        data_file['level'] = f.get('fLevel', data_file.get('level'))
-        data_file['questionId'] = f.get('fQuestionId', data_file.get('questionId'))
-        data_file['question'] = f.get('question', data_file.get('question'))
-        # data_file['commodity'] = f.get('commodity', data_file.get('commodity'))
-        data_file['free'] = f.get('fFree', data_file.get('free'))
-
-        file_dict[fid] = data_file
-
     response = requests.post(url, headers=headers, params=params, stream=True, proxies=proxies)
+    print("请求结果-----------------")
     print(response.text)
-    file = {
-        'id': 1,
-        'type': 1,
-        'parentId': 1,
-        'rootId': 1,
-        'title': 'test',
-        'questionId': 1,
-        'commodityId': 1,
-        'level': 1,
-        'commodity': {},
-        'question': {},
-        'free': 1
-    }
+    print("请求结果-----------------")
     if response.status_code == 200:
         json_data = response.json()
-        # print(json_data)
         for data in json_data['data']:
-            method_name(file_dict, data)
+            build_my_data(file_dict, data)
             children_ = data['children']
             for c in children_:
-                method_name(file_dict, c)
+                build_my_data(file_dict, c)
                 for cc in c['children']:
-                    method_name(file_dict, cc)
+                    build_my_data(file_dict, cc)
                     commodity_ = cc['commodity']
-                    # print(commodity_)
-                    method_name(file_dict, commodity_)
-
-                    # commodityId = commodity_['fId']
-                    # commodityTitle = commodity_['fPayTitle']
-                    # commodityEnTitle = commodity_['fEntitle']
-                    # if not cc['children']:
-                    #     print(cc['children'])
-                    # if not cc['question']:
-                    #     print(cc['question'])
-                    # if not cc['exerciseOnlineList']:
-                    #     print(cc['exerciseOnlineList'])
+                    build_my_data(file_dict, commodity_)
 
     else:
         print("Request failed. Status code:", response.status_code)
+    print("result json-----------------")
     print(json.dumps(file_dict, indent=4, ensure_ascii=False))
+    print("result json-----------------")
     for value in file_dict.values():
-        downloadFile(value['id'],level+ value['title'])
+        downloadFile(value['id'], level + value['title'])
 
 
-
-
-
-# get(3, "初级")
-# get(7, "中级")
-get(10, "高级")
-# get(1)
-# get(5)
-# get(9)
-
+get_and_download_zip(menuId=3, level="初级")
+get_and_download_zip(menuId=7, level="中级")
+get_and_download_zip(menuId=10, level="高级")
+# get_and_download_zip(1)
+# get_and_download_zip(5)
+# get_and_download_zip(9)
 
 
 #

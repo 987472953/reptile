@@ -1,8 +1,6 @@
 # 打开yangying文件夹 遍历
 import json
 import os
-import re
-import shutil
 import zipfile
 
 current_directory = os.getcwd() + "/yangying"
