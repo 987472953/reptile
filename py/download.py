@@ -39,3 +39,27 @@ def downloadFile(id, title):
         print("Download completed.")
     else:
         print("Download failed. Status code:", download_response.status_code)
+
+
+def upload_file(file_path):
+    url = "https://image-d.quthing.com/oss/file/upload"
+    headers = {
+        "Authorization": "Token 00a8ab11d35851a99bef97f2e991bb0e05fce268"
+    }
+
+    payload = {
+        "biz": "music_knowledge_exam_test",
+        "appId": "286"
+    }
+
+    files = {
+        "file": (file_path.split("/")[-1],
+                 open(file_path, "rb"))
+    }
+
+    response = requests.post(url, headers=headers, data=payload, files=files)
+
+    print(response.status_code)
+    print(response.text)
+    json = response.json()
+    return json['data']['url']

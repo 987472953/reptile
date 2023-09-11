@@ -5,7 +5,7 @@ import os
 import requests
 
 current_directory = os.getcwd() + "/yangying"
-
+need_answer = False
 
 def init(id):
     url = "https://xl.kaoji.com/exercise/rest/exam/initAnswerExerciseId?unitId={}".format(id)
@@ -135,10 +135,11 @@ for root, dirs, files in os.walk(current_directory):
                 json_data = json.load(f)
                 init(json_data[0]['id'])
 
-                for child in json_data[0]['children']:
-                    do_answer(json_data[0]['id'], child['id'])
+                if need_answer:
+                    for child in json_data[0]['children']:
+                        do_answer(json_data[0]['id'], child['id'])
+                    save_answer(json_data[0]['id'])
 
-                save_answer(json_data[0]['id'])
                 get(json_data[0]['id'])
                 answer = get_answer(json_data[0]['id'])
 

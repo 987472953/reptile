@@ -3,7 +3,7 @@ import os
 import traceback
 import zipfile
 
-from py.央音svg import get_add_frame_svg, get_add_icon_svg, sava_svg
+from py.央音svg import get_add_frame_svg, get_add_icon_svg, sava_svg, get_add_text_svg, get_svg_and_hide_node
 
 # 获取当前工作目录
 current_directory = os.getcwd() + "/yangying"
@@ -43,9 +43,12 @@ def unzip(zip_file_name: str):
     extract_to_folder = current_directory + '/' + zip_file_name[:-4]
     if not os.path.exists(extract_to_folder):
         # 打开 ZIP 文件
-        with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
-            # 解压 ZIP 文件到目标路径
-            zip_ref.extractall(extract_to_folder)
+        try:
+            with zipfile.ZipFile(zip_file_path, 'r') as zip_ref:
+                # 解压 ZIP 文件到目标路径
+                zip_ref.extractall(extract_to_folder)
+        except Exception as e:
+            print("errorZip", zip_file_name)
     return extract_to_folder
 
 
@@ -146,7 +149,9 @@ def build_base_question(read_value: dict, param: list, path: str):
                     except Exception as e:
                         traceback.print_exc()
                         print("errorSvg", frames, join)
-                elif p['name'] == 'addIcons':
+                        exit(-2)
+
+                elif p['name'] == 'addIcons' or p['name'] == 'addBeat':
                     if len(show_score) != 1:
                         exit(-1)
                     score_ = show_score[0]
@@ -157,6 +162,32 @@ def build_base_question(read_value: dict, param: list, path: str):
                     except Exception as e:
                         traceback.print_exc()
                         print("errorSvgIcon", json_loads, join)
+                        exit(-2)
+                elif p['name'] == 'hideElements':
+                    if len(show_score) != 1:
+                        exit(-1)
+                    score_ = show_score[0]
+                    join = os.path.join(path, score_['value'][:-3] + 'svg')
+                    json_loads = json.loads(p['value'])
+                    try:
+                        svg = get_svg_and_hide_node(svg, json_loads, join)
+                    except Exception as e:
+                        traceback.print_exc()
+                        print("errorSvgIcon", json_loads, join)
+                        exit(-2)
+
+                elif p['name'] == 'addLabels':
+                    if len(show_score) != 1:
+                        exit(-1)
+                    score_ = show_score[0]
+                    join = os.path.join(path, score_['value'][:-3] + 'svg')
+                    json_loads = json.loads(p['value'])
+                    try:
+                        svg = get_add_text_svg(svg, json_loads, join)
+                    except Exception as e:
+                        traceback.print_exc()
+                        print("errorSvgIcon", json_loads, join)
+                        exit(-2)
 
                 else:
                     assert False, "不支持的参数"
@@ -204,6 +235,7 @@ if __name__ == '__main__':
 
     for zip_file in zip_files:
         unzip_file_path = unzip(zip_file)
+        print("读取文件：", os.path.join(unzip_file_path))
         with open(os.path.join(unzip_file_path, "data.json"), "r") as f:
             file_dict = build_file_dict(json.loads(f.read()), unzip_file_path)
 
