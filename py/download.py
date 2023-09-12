@@ -62,4 +62,4 @@ def upload_file(file_path):
     print(response.status_code)
     print(response.text)
     json = response.json()
-    return json['data']['url']
+    return json['data'][0]['url']

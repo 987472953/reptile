@@ -1,9 +1,11 @@
 # 打开yangying文件夹 遍历
 import json
 import os
+import traceback
 import zipfile
 
 from py.download import upload_file
+from py.央音svg import sava_svg
 
 current_directory = os.getcwd() + "/yangying"
 
@@ -14,6 +16,16 @@ if build_json:
     for root, dirs, files in os.walk(current_directory):
         for file in files:
             if file.endswith('my-data-answer.json'):
+                for root1, dirs1, files1 in os.walk(os.path.join(root, "score")):
+                    for f in files1:
+                        if not f.endswith('.svg'):
+                            continue
+                        # if f.endswith('-new.svg'):
+                        #     os.remove(os.path.join(root1, f))
+                        #     continue
+                        sava_svg(None, os.path.join(root1, f), os.path.join(root1, f))
+
+
                 # 打开文件
                 print(os.path.join(root, file))
                 with open(os.path.join(root, file), 'r', encoding='utf-8') as f:
@@ -25,12 +37,29 @@ if build_json:
                         for child in fm_json_data[0]['children']:
                             fm_dict[child['id']] = child
 
+                    resources = []
+                    for root1, dirs1, files1 in os.walk(root):
+                        for f in files1:
+                            if f.endswith('.mei'):
+                                continue
+                            if f.endswith('.json'):
+                                continue
+                            if "score1" in root1:
+                                continue
+                            else:
+                                join = os.path.join(root1, f)
+                                relative_path = os.path.relpath(join, root)  # 获取相对路径
+                                resources.append(relative_path)
+                    resources = {"list": resources}
+                    open(os.path.join(root, "resource.json"), 'w', encoding='utf-8').write(
+                        json.dumps(resources, indent=4, ensure_ascii=False))
+
                     # 读取文件内容
                     # 获取文件夹名
-                    print(json_data[0]['children'])
                     # 获取文件questions的长度
                     support_list = []
                     no_support_list = []
+                    support_index = 1
                     for child in json_data[0]['children']:
                         if child['type'] == '1':
                             child['type'] = '[ 单选 ] '
@@ -42,12 +71,19 @@ if build_json:
                         else:
                             del child["answerFlow"]
                             del child["children"]
+                            try:
+                                child['question'] = str(support_index) + child['question'][child['question'].index("."):]
+                            except Exception as e:
+                                traceback.print_exc()
+                                child['question'] = str(support_index) + child['question'][child['question'].index("、"):]
+                                print(child['question'])
+
+                            support_index += 1
                             support_list.append(child)
                     with open(os.path.join(root, file[:-5] + "-support.json"), 'w', encoding='utf-8') as f:
                         f.write(json.dumps(support_list, indent=4, ensure_ascii=False))
                     with open(os.path.join(root, file[:-5] + "-no-support.json"), 'w', encoding='utf-8') as f:
                         f.write(json.dumps(no_support_list, indent=4, ensure_ascii=False))
-
 
 chinese_int_list = ['一', '二', '三', '四', '五', '六', '七', '八', '九', '十']
 english_int_list = ['one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight', 'nine', 'ten']
@@ -91,7 +127,6 @@ if save_and_upload:
                     count = len(loads)
 
                 id = level_dict[title] + "_integrated_simulation_" + english_int_list[index]
-                print(id)
                 exam_param = {
                     "title": subdirectory[:-3] + " " + str(int_list[index]),
                     "isVIP": True,
@@ -110,24 +145,25 @@ if save_and_upload:
                 rename = os.rename(new_path + "/my-data-answer-support.json", new_path + '/data.json')
 
                 folder_to_compress = new_path
-                if os.path.exists(folder_to_compress + ".zip"):
-                    os.remove(folder_to_compress + ".zip")
-                # 压缩后的 ZIP 文件路径
                 zip_file_path = new_path + ".zip"
+                if os.path.exists(zip_file_path):
+                    os.remove(zip_file_path)
+                # 压缩后的 ZIP 文件路径
                 # 创建一个 ZIP 文件
                 with zipfile.ZipFile(zip_file_path, 'w', zipfile.ZIP_DEFLATED) as zipf:
                     # 遍历文件夹中的所有文件和子文件夹，并将它们添加到 ZIP 文件中
                     for root, _, files in os.walk(folder_to_compress):
                         for file in files:
-                            if file.endswith('-ne1w.svg'):
-                                file_path = os.path.join(root, file)
-                                os.remove(file_path)
+                            if file.endswith('.mei'):
                                 continue
-                            if file.endswith('.json') and (not file.endswith("data.json") and not file.endswith("resource.json")):
+                            if file.endswith('.json') and (
+                                    not file.endswith("data.json") and not file.endswith("resource.json")):
                                 continue
                             if file.endswith("my-data.json"):
                                 continue
                             file_path = os.path.join(root, file)
+                            if "score1" in file_path:
+                                continue
                             arcname = os.path.relpath(file_path, folder_to_compress)
                             zipf.write(file_path, arcname)
                 rename = os.rename(new_path + '/data.json', new_path + "/my-data-answer-support.json")

@@ -1,5 +1,6 @@
 import json
 import os
+import shutil
 import traceback
 import zipfile
 
@@ -141,11 +142,12 @@ def build_base_question(read_value: dict, param: list, path: str):
                     if len(show_score) != 1:
                         exit(-1)
                     score_ = show_score[0]
-                    join = os.path.join(path, score_['value'][:-3] + 'svg')
+                    svg_ = score_['value'][:-3] + 'svg'
+                    svg_ = svg_.replace("score", "score1")
+                    join = os.path.join(path, svg_)
                     frames = json.loads(p['value'])
                     try:
                         svg = get_add_frame_svg(svg, frames, join)
-                        read_value["img"] = read_value['img'][:-4] + '-new.svg'
                     except Exception as e:
                         traceback.print_exc()
                         print("errorSvg", frames, join)
@@ -155,7 +157,9 @@ def build_base_question(read_value: dict, param: list, path: str):
                     if len(show_score) != 1:
                         exit(-1)
                     score_ = show_score[0]
-                    join = os.path.join(path, score_['value'][:-3] + 'svg')
+                    svg_ = score_['value'][:-3] + 'svg'
+                    svg_ = svg_.replace("score", "score1")
+                    join = os.path.join(path, svg_)
                     json_loads = json.loads(p['value'])
                     try:
                         svg = get_add_icon_svg(svg, json_loads, join)
@@ -167,7 +171,9 @@ def build_base_question(read_value: dict, param: list, path: str):
                     if len(show_score) != 1:
                         exit(-1)
                     score_ = show_score[0]
-                    join = os.path.join(path, score_['value'][:-3] + 'svg')
+                    svg_ = score_['value'][:-3] + 'svg'
+                    svg_ = svg_.replace("score", "score1")
+                    join = os.path.join(path, svg_)
                     json_loads = json.loads(p['value'])
                     try:
                         svg = get_svg_and_hide_node(svg, json_loads, join)
@@ -180,7 +186,9 @@ def build_base_question(read_value: dict, param: list, path: str):
                     if len(show_score) != 1:
                         exit(-1)
                     score_ = show_score[0]
-                    join = os.path.join(path, score_['value'][:-3] + 'svg')
+                    svg_ = score_['value'][:-3] + 'svg'
+                    svg_ = svg_.replace("score", "score1")
+                    join = os.path.join(path, svg_)
                     json_loads = json.loads(p['value'])
                     try:
                         svg = get_add_text_svg(svg, json_loads, join)
@@ -201,6 +209,9 @@ def build_base_question(read_value: dict, param: list, path: str):
             except Exception as e:
                 traceback.print_exc()
                 exit(-2)
+
+        if len(audio_set) == 1:
+            del read_value['audio']
 
         assert len(audio_set) <= 2, "audio_set 长度大于1"
         assert len(question_set) <= 1, "question_set 长度大于1"
@@ -242,12 +253,14 @@ if __name__ == '__main__':
         # 创建一个字典用于存储父子关系
         parent_child_relationship = {}
 
-        options_set = set()
-
         for key, value in file_dict.items():
             parent_id = value["parentId"]
             if parent_id not in parent_child_relationship:
                 parent_child_relationship[parent_id] = []
+
+            # 复制./score 到 ./score1
+            if not os.path.exists(value['path'] + "/" + "score1"):
+                shutil.copytree(value['path'] + "/" + "score", value['path'] + "/" + "score1")
 
             read_value = {
                 'id': value['id'],
@@ -255,6 +268,7 @@ if __name__ == '__main__':
                 'type': value['type'],
                 'answerFlow': value['answerFlow'],
             }
+            # 构建问题信息
             build_base_question(read_value, value['answerFlow'], value['path'])
             parent_child_relationship[parent_id].append(read_value)
 
