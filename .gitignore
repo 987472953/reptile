@@ -159,3 +159,5 @@ __pycache__/
 *.sw?
 
 py/yangying
+py/yinghuang
+*.zip
