@@ -1,38 +1,123 @@
+import base64
+import io
 import os.path
 import re
 
-import cairosvg
-from lxml import etree
 from PIL import Image
-import io
-import base64
+from lxml import etree
+
+max_value = 100000000
+min_value = -1
 
 
-# 读取 SVG 文件
+def sample_points_on_cubic(points, num_samples=100):
+    """
+    计算三次贝塞尔曲线上的高度
+    :param points:
+    :param num_samples:
+    :return:
+    """
+    # 初始化采样点列表
+    sampled_points = []
 
-def get_x_node(node, min_x=100000000, max_x=-1):
+    # 遍历t值（0到1之间的值）
+    for t in range(num_samples + 1):
+        t_value = t / num_samples
+
+        # 使用三次贝塞尔曲线的公式计算对应点的坐标
+        x = (1 - t_value) ** 3 * points[0][0] + 3 * (1 - t_value) ** 2 * t_value * points[1][0] + 3 * (
+                1 - t_value) * t_value ** 2 * points[2][0] + t_value ** 3 * points[3][0]
+        y = (1 - t_value) ** 3 * points[0][1] + 3 * (1 - t_value) ** 2 * t_value * points[1][1] + 3 * (
+                1 - t_value) * t_value ** 2 * points[2][1] + t_value ** 3 * points[3][1]
+
+        sampled_points.append((x, y))
+
+    return sampled_points
+
+
+def estimate_cubic_height(points, num_samples=100):
+    sampled_points = sample_points_on_cubic(points, num_samples)
+    min_y = min(point[1] for point in sampled_points)
+    max_y = max(point[1] for point in sampled_points)
+    height = max_y - min_y
+    return height
+
+
+def get_cubic_height(path_data):
+    # 使用正则表达式提取坐标点
+    matches = re.findall(r'(\d+),(\d+)', path_data)
+
+    # 将坐标点转换为整数
+    points = [(int(x), int(y)) for x, y in matches]
+    min_x = max_value
+    max_x = min_value
+    min_y = max_value
+    max_y = min_value
+
+    for point in points:
+        # 定义符号变量
+        x0, y0 = point
+        min_x = min(min_x, x0)
+        max_x = max(max_x, x0)
+        min_y = min(min_y, y0)
+        max_y = max(max_y, y0)
+
+    height = estimate_cubic_height(points)
+    x0, y0 = points[0]
+    x1, y1 = points[1]
+    if y1 < y0:
+        # 开口向下
+        min_y = y0 - height
+    else:
+        # 开口向上
+        max_y = y0 + height
+
+    return [min_x, max_x, min_y, max_y]
+
+
+def get_x_node(node, min_x=100000000, max_x=min_value):
     if node is None:
         return None, None
+    # 二次添加的元素
+    if 'id' in node.attrib:
+        if node.attrib['id'] == 'self_add':
+            return None, None
+    # 第一行的头元素
+    if 'class' in node.attrib:
+        if node.attrib['class'] == 'tempo':
+            return None, None
 
     width = 0
     if 'width' in node.attrib:
-        width = int(node.attrib['width'].replace("px", ""))
+        if 'px' in node.attrib['width']:
+            width = int(node.attrib['width'].replace("px", "")) / 2
+        else:
+            width = int(node.attrib['width'])
+
+    if 'stroke-width' in node.attrib:
+        if 'px' in node.attrib['stroke-width']:
+            width = int(node.attrib['stroke-width'].replace("px", "")) / 2
+        else:
+            width = int(node.attrib['stroke-width'])
 
     if 'x' in node.attrib:
         x = int(node.attrib['x'])
         min_x = min(x, min_x)
         max_x = max(x + width, max_x)
+    if 'points' in node.attrib:
+        split = node.attrib['points'].split(" ")
+        for s in split:
+            s_split = s.split(",")
+            if len(s_split) <= 1:
+                continue
+            min_x = min(int(s_split[0]), min_x)
+            max_x = max(int(s_split[0]), min_x)
     if 'd' in node.attrib:
         split = node.attrib['d'].split(" ")
         if "," in split[0]:
-            for i in split:
-                i_split = i.split(",")
-                if i_split[0][0].isnumeric():
-                    x = int(i_split[0])
-                else:
-                    x = int(i_split[0][1:])
-                min_x = min(x, min_x)
-                max_x = max(x + width, max_x)
+            height = get_cubic_height(node.attrib['d'])
+            min_x = min(height[0], min_x)
+            max_x = max(height[1], min_x)
         else:
             for i in range(0, len(split), 2):
                 if split[i] == 'M':
@@ -51,26 +136,42 @@ def get_x_node(node, min_x=100000000, max_x=-1):
     return min_x, max_x
 
 
-def get_y_node(node, min_y=100000000, max_y=-1):
+def get_y_node(node, min_y=100000000, max_y=min_value):
     if node is None:
         return None, None
 
+    if 'id' in node.attrib:
+        if node.attrib['id'] == 'self_add':
+            return None, None
+    if 'class' in node.attrib:
+        if node.attrib['class'] == 'tempo':
+            return None, None
+
     height = 0
     # if 'height' in node.attrib:
-    #     height = int(node.attrib['height'].replace("px", ""))
+    #     if 'px' in node.attrib['height']:
+    #         height = int(node.attrib['height'].replace("px", "")) / 2
+    #     else:
+    #         height = int(node.attrib['height'])
 
     if 'y' in node.attrib:
         y = int(node.attrib['y'])
         min_y = min(y, min_y)
         max_y = max(y + height, max_y)
+    if 'points' in node.attrib:
+        split = node.attrib['points'].split(" ")
+        for s in split:
+            s_split = s.split(",")
+            if len(s_split) <= 1:
+                continue
+            min_y = min(int(s_split[1]), min_y)
+            max_y = max(int(s_split[1]), max_y)
     if 'd' in node.attrib:
         split = node.attrib['d'].split(" ")
         if "," in split[0]:
-            for i in split:
-                i_split = i.split(",")
-                y = int(i_split[1])
-                min_y = min(y, min_y)
-                max_y = max(y + height, max_y)
+            height = get_cubic_height(node.attrib['d'])
+            min_y = min(min_y, height[2])
+            max_y = max(max_y, height[3])
         else:
             for i in range(1, len(split), 2):
                 y = int(split[i])
@@ -135,16 +236,23 @@ def get_add_frame_svg(tree, node_id_list: list, path):
         if node_id2 and not node2:
             print(f'Element with ID "{node_id2}" not found in the SVG.')
             assert False
+        beam_node1 = find_parent_with_class(node1[0], 'beam')
+        if beam_node1 != None:
+            node1[0] = beam_node1
 
         node1_min_x, node1_max_x = get_x_node(node1[0])
-        staff_node1 = find_parent_with_class(node1[0], 'system')
+        staff_node1 = find_parent_with_class(node1[0], 'measure')
         if staff_node1 == None:
             staff_node1 = node1[0]
         node1_p_min_y, node1_p_max_y = get_y_node(staff_node1)
-
+        node2_p_min_y = 100000000
+        node2_p_max_y = min_value
         width = node1_max_x - node1_min_x
         if node2:
-            staff_node2 = find_parent_with_class(node2[0], 'system')
+            beam_node2 = find_parent_with_class(node2[0], 'beam')
+            if beam_node2 != None:
+                node2[0] = beam_node2
+            staff_node2 = find_parent_with_class(node2[0], 'measure')
 
             system_node1 = find_parent_with_class(node1[0], 'system')
             system_node2 = find_parent_with_class(node2[0], 'system')
@@ -153,15 +261,23 @@ def get_add_frame_svg(tree, node_id_list: list, path):
             node2_p_min_y, node2_p_max_y = get_y_node(staff_node2)
             width = node2_max_x - node1_min_x
 
+            while staff_node1 != staff_node2:
+                staff_node1 = staff_node1.getnext()
+                if staff_node1 == None:
+                    break
+                staff_node1_next_min_y, staff_node1_next_max_y = get_y_node(staff_node1.getnext())
+                node2_p_min_y = min(node2_p_min_y, staff_node1_next_min_y) if staff_node1_next_min_y else node2_p_min_y
+                node2_p_max_y = max(node2_p_max_y, staff_node1_next_max_y) if staff_node1_next_max_y else node2_p_max_y
+
             if system_node1 is not None and system_node2 is not None:
                 if system_node1.attrib['id'] != system_node2.attrib['id']:
                     print("不在同一列")
-                    x = node1_min_x - 80
-                    y = node1_p_min_y
-                    height = node1_p_max_y - node1_p_min_y
-                    height = 1200 if height < 1000 else height
+                    x = node1_min_x - 160
+                    y = node1_p_min_y - 80
+                    height = node1_p_max_y - node1_p_min_y + 240
+                    height = 1000 if height < 1000 else height
                     width = 19000 - x
-                    rect = etree.Element('rect', id='box',
+                    rect = etree.Element('rect', id='self_add',
                                          x=str(x), y=str(y),
                                          width=str(width), height=str(height),
                                          stroke='red', fill='none')
@@ -170,10 +286,10 @@ def get_add_frame_svg(tree, node_id_list: list, path):
 
                     x = 0
                     y = node2_p_min_y
-                    height = node2_p_max_y - node2_p_min_y
-                    height = 1200 if height < 1000 else height
+                    height = node2_p_max_y - node2_p_min_y + 240
+                    height = 1000 if height < 1000 else height
                     width = node2_max_x + 160
-                    rect = etree.Element('rect', id='box',
+                    rect = etree.Element('rect', id='self_add',
                                          x=str(x), y=str(y),
                                          width=str(width), height=str(height),
                                          stroke='red', fill='none')
@@ -181,13 +297,15 @@ def get_add_frame_svg(tree, node_id_list: list, path):
                     node1[0].getparent().append(rect)
                     return tree
 
-        width = width + 160
+        width = width + 200
         x = node1_min_x - 160
-        y = node1_p_min_y
-        height = node1_p_max_y - node1_p_min_y
-        height = 1200 if height < 1200 else height
+        min_y = min(node1_p_min_y, node2_p_min_y)
+        max_y = max(node1_p_max_y, node2_p_max_y)
+        y = min_y - 160
+        height = max_y - min_y + 320
+        height = 1000 if height < 1000 else height
         # 创建一个矩形元素来表示框
-        rect = etree.Element('rect', id='box',
+        rect = etree.Element('rect', id='self_add',
                              x=str(x), y=str(y),
                              width=str(width), height=str(height),
                              stroke='red', fill='none')
@@ -220,11 +338,12 @@ def get_add_icon_svg(tree, icon_list: list, path):
     if not tree:
         tree = etree.parse(path)
     root = tree.getroot()
-
+    print(path)
     for icon in icon_list:
         image = icon['image']
         format = image[-3:]
-        image = Image.open(os.path.join("yangying/中级综合模拟测试（一）", image))
+        icon_path = os.path.join(path.rsplit("/", 2)[0], image)
+        image = Image.open(icon_path)
         # 编码位图图像为Base64字符串
         image_buffer = io.BytesIO()
         image.save(image_buffer, format=format)
@@ -251,7 +370,7 @@ def get_add_icon_svg(tree, icon_list: list, path):
         height = 500
 
         # 创建一个矩形元素来表示框
-        rect = etree.Element('image', id='image',
+        rect = etree.Element('image', id='self_add',
                              x=str(x), y=str(y),
                              width=str(width), height=str(height))
 
@@ -288,16 +407,11 @@ def get_add_text_svg(tree, text_list: list, path):
 
         x = node1_min_x
         y = get_default_y(node1_p_min_y, node1_min_x, False)
-        width = 500
-        height = 500
 
         # 创建一个矩形元素来表示框
-        rect = etree.Element('text', id='text',
-                             x=str(x), y=str(y))
+        rect = etree.Element('text', id='self_add', x=str(x), y=str(y))
         rect.set("font-size", "500")
         rect.text = text
-
-        rect.set("{http://www.w3.org/1999/xlink}href", "../" + text)
 
         # 将矩形元素添加到根元素中
         node[0].getparent().append(rect)
@@ -315,30 +429,43 @@ def get_svg_and_hide_node(tree, id_list: list, path):
         node = get_node_by_id(id, root)
         if len(node) == 0:
             continue
-
         node[0].set("visibility", "hidden")
 
     return tree
 
 
-def sava_svg(tree, path, new_path=None):
+def sava_svg(tree, path: str, new_path: str = None):
     if not tree:
         tree = etree.parse(path)
-
-    # 保存更新后的 SVG 文件
+    # 这个类是 个<svg> svg中包含svg 很多设备不支持
     nodes_class = get_node_by_class("definition-scale", tree)
-
     if len(nodes_class) > 1:
         print("nodes_class len != 1" + path)
-        exit(-1)
-    if len(nodes_class) == 1:
-        box_ = nodes_class[0].attrib['viewBox']
-        getparent = nodes_class[0].getparent()
-        getparent.set("viewBox", box_)
-        getparent.append(*nodes_class[0].getchildren())
-        getparent.remove(nodes_class[0])
+        exit(min_value)
+    elif len(nodes_class) == 1:
+        # 将viewBox放到root上
+        view_box = nodes_class[0].attrib['viewBox']
+        tree.getroot().set("viewBox", view_box)
+        tree.getroot().append(*nodes_class[0].getchildren())
+        tree.getroot().remove(nodes_class[0])
+    # 将宽高都转换为100:x
+    if 'width' in tree.getroot().attrib and 'height' in tree.getroot().attrib:
+        unit = tree.getroot().attrib['width'][-2:]
+        if unit == "vw":
+            pass
+        else:
+            if unit != "px" and unit != "mm":
+                print("width not vw", unit)
+                exit(min_value)
+            width = int(float(tree.getroot().attrib['width'][:-2]))
+            height = int(float(tree.getroot().attrib['height'][:-2]))
+            tree.getroot().set("width", "100vw")
+            tree.getroot().set("height", str(int(height / width * 100)) + "vw")
+    else:
+        tree.getroot().set("width", "100vw")
+        tree.getroot().set("height", "50vw")
 
-    if new_path == None:
+    if new_path is None:
         svg_ = path[:-3] + "svg"
     else:
         svg_ = new_path
@@ -346,11 +473,12 @@ def sava_svg(tree, path, new_path=None):
 
 
 if __name__ == '__main__':
-    path = "yangying/初级综合模拟测试（一）/score1/"
+    path = "yangying/初级综合模拟测试（五）/score1/"
+    save_path = "yangying/初级综合模拟测试（五）/score/"
     # 要创建框的元素的 ID
-    target_id = [["note-0000001285762267", "note-0000002073445200"]]
+    target_id = [["note-0000001095055409", "note-0000001390752840"]]
     # target_id2 = 'note-0000001998559704'
-    svg_path = "6213.svg"
+    svg_path = "7703.svg"
     svg = None
     svg = get_add_frame_svg(None, target_id, path + svg_path)
     # svg = get_add_icon_svg(svg,
@@ -370,7 +498,4 @@ if __name__ == '__main__':
     #                         {"selector": "note-0000000300899360", "text": "④"}],
     #                        path + svg_path)
     # svg = get_svg_and_hide_node(svg, ["note-0000000415156637"], path + svg_path)
-    sava_svg(svg, path + svg_path)
-    with open(path + svg_path, "rb") as svg_file:
-        svg_data = svg_file.read()
-        cairosvg.svg2png(bytestring=svg_data, write_to="output.png")
+    sava_svg(svg, path + svg_path, save_path + svg_path)

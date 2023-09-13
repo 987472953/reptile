@@ -1,5 +1,2 @@
-import json
+import pySVG
 
-print("aa.af".index("."))
-
-print("aa.af"["aa.af".index(".")])
