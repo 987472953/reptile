@@ -205,7 +205,7 @@ def build_base_question(read_value: dict, param: list, path: str):
         if svg:
             try:
                 path = os.path.join(path, show_score[0]['value'])
-                sava_svg(svg, path)
+                read_value["ratio"] = sava_svg(svg, path)
             except Exception as e:
                 traceback.print_exc()
                 exit(-2)
@@ -223,7 +223,7 @@ def build_base_question(read_value: dict, param: list, path: str):
         if svg:
             try:
                 path = os.path.join(path, show_score[0]['value'])
-                sava_svg(svg, path)
+                read_value["ratio"] = sava_svg(svg, path)
             except Exception as e:
                 print("errorSaveSvg", svg)
                 traceback.print_exc()
@@ -246,7 +246,7 @@ if __name__ == '__main__':
 
     for zip_file in zip_files:
         unzip_file_path = unzip(zip_file)
-        print("读取文件：", os.path.join(unzip_file_path))
+        # print("读取文件：", os.path.join(unzip_file_path))
         with open(os.path.join(unzip_file_path, "data.json"), "r") as f:
             file_dict = build_file_dict(json.loads(f.read()), unzip_file_path)
 

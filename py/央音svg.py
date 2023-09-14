@@ -265,7 +265,8 @@ def get_add_frame_svg(tree, node_id_list: list, path):
                 staff_node1 = staff_node1.getnext()
                 if staff_node1 == None:
                     break
-                staff_node1_next_min_y, staff_node1_next_max_y = get_y_node(staff_node1.getnext())
+
+                staff_node1_next_min_y, staff_node1_next_max_y = get_y_node(staff_node1)
                 node2_p_min_y = min(node2_p_min_y, staff_node1_next_min_y) if staff_node1_next_min_y else node2_p_min_y
                 node2_p_max_y = max(node2_p_max_y, staff_node1_next_max_y) if staff_node1_next_max_y else node2_p_max_y
 
@@ -297,7 +298,7 @@ def get_add_frame_svg(tree, node_id_list: list, path):
                     node1[0].getparent().append(rect)
                     return tree
 
-        width = width + 200
+        width = width + 320
         x = node1_min_x - 160
         min_y = min(node1_p_min_y, node2_p_min_y)
         max_y = max(node1_p_max_y, node2_p_max_y)
@@ -338,7 +339,6 @@ def get_add_icon_svg(tree, icon_list: list, path):
     if not tree:
         tree = etree.parse(path)
     root = tree.getroot()
-    print(path)
     for icon in icon_list:
         image = icon['image']
         format = image[-3:]
@@ -449,6 +449,7 @@ def sava_svg(tree, path: str, new_path: str = None):
         tree.getroot().append(*nodes_class[0].getchildren())
         tree.getroot().remove(nodes_class[0])
     # 将宽高都转换为100:x
+    ratio = None
     if 'width' in tree.getroot().attrib and 'height' in tree.getroot().attrib:
         unit = tree.getroot().attrib['width'][-2:]
         if unit == "vw":
@@ -459,6 +460,7 @@ def sava_svg(tree, path: str, new_path: str = None):
                 exit(min_value)
             width = int(float(tree.getroot().attrib['width'][:-2]))
             height = int(float(tree.getroot().attrib['height'][:-2]))
+            ratio = float(height / width)
             tree.getroot().set("width", "100vw")
             tree.getroot().set("height", str(int(height / width * 100)) + "vw")
     else:
@@ -470,15 +472,16 @@ def sava_svg(tree, path: str, new_path: str = None):
     else:
         svg_ = new_path
     tree.write(svg_, pretty_print=True, encoding="UTF-8", xml_declaration=True)
+    return ratio
 
 
 if __name__ == '__main__':
-    path = "yangying/初级综合模拟测试（五）/score1/"
-    save_path = "yangying/初级综合模拟测试（五）/score/"
+    path = "yangying/高级综合模拟测试（一）/score1/"
+    save_path = "yangying/高级综合模拟测试（一）/score/"
     # 要创建框的元素的 ID
-    target_id = [["note-0000001095055409", "note-0000001390752840"]]
+    target_id = [["note-0000000476146892"]]
     # target_id2 = 'note-0000001998559704'
-    svg_path = "7703.svg"
+    svg_path = "75760.svg"
     svg = None
     svg = get_add_frame_svg(None, target_id, path + svg_path)
     # svg = get_add_icon_svg(svg,

@@ -131,7 +131,7 @@ if save_and_upload:
 
                 id = level_dict[title] + "_integrated_simulation_" + english_int_list[index]
                 exam_param = {
-                    "title": subdirectory[:-3] + " " + str(int_list[index]),
+                    "title": "中央音乐学院" + subdirectory[:2] + " " + str(int_list[index]),
                     "isVIP": True,
                     "id": id,
                     "count": count,

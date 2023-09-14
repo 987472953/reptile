@@ -12,7 +12,7 @@ items = os.listdir(current_directory)
 subdirectories = [item for item in items if os.path.isdir(os.path.join(current_directory, item)) and item != "origin"]
 # 打印所有一级目录
 title_dict = {
-    'title': "Music Theory Sample Paper 2020",
+    'title': "英国皇家音乐学院",
     'image': 'img_center',
     'entitys': []
 }
