@@ -116,7 +116,7 @@ if save_and_upload:
             if subdirectory.startswith(title):
                 if title not in title_dict:
                     title_dict[title] = {
-                        'title': subdirectory[:-3],
+                        'title': "中央音乐学院" + subdirectory[:2],
                         'image': 'img_center',
                         'entitys': []
                     }
@@ -131,11 +131,11 @@ if save_and_upload:
 
                 id = level_dict[title] + "_integrated_simulation_" + english_int_list[index]
                 exam_param = {
-                    "title": "中央音乐学院" + subdirectory[:2] + " " + str(int_list[index]),
+                    "title": subdirectory[:-3] + " " + str(int_list[index]),
                     "isVIP": True,
                     "id": id,
                     "count": count,
-                    "subTitle": subdirectory[:-3] + " " + str(int_list[index]),
+                    "subTitle": subdirectory[2:-3] + " " + str(int_list[index]),
                     "indexTitle": subdirectory[2:],
                     "index": int_list[index],
                     "isMoNi": True,
