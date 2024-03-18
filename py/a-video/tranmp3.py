@@ -3,19 +3,16 @@ import subprocess
 
 
 def process_video(input_path, output_path):
-    logo_path = "/Users/mac/Downloads/logo.png"  # 你的logo文件路径
-
     # 构建ffmpeg命令
     ffmpeg_command = [
         "ffmpeg",
+        "-f",
+        "s16le",
+        "-ar",
+        "44100",
+        "-ac",
+        "2",
         "-i", input_path,
-        "-i", logo_path,
-        "-filter_complex", "[1:v]scale=iw*2:ih*2[wm];[0:v][wm]overlay=W-w-80:h-80",
-        "-vcodec", "libx264",
-        "-crf", "35",
-        "-preset", "fast",
-        "-codec:a", "aac",
-        "-b:a", "96k",
         output_path,
         "-y"
     ]
@@ -28,12 +25,13 @@ def process_folder(input_folder, output_folder):
     # 遍历文件夹中的视频文件
     for root, dirs, files in os.walk(input_folder):
         for file in files:
-            if file.lower().endswith(('.mp4', '.mkv', '.avi', '.mov')):
+            if file.lower().endswith(('.pcm')):
                 input_path = os.path.join(root, file)
 
                 # 构建输出文件路径
                 relative_path = os.path.relpath(input_path, input_folder)
-                output_path = os.path.join(output_folder, relative_path.replace(os.path.sep, os.path.sep))
+                # pcm 换为 mp3
+                output_path = os.path.join(output_folder, relative_path.replace(os.path.sep, os.path.sep)[:-3] + "mp3")
 
                 # 创建输出文件夹
                 os.makedirs(os.path.dirname(output_path), exist_ok=True)
@@ -57,7 +55,7 @@ def process_folder(input_folder, output_folder):
 
 if __name__ == "__main__":
     # input_folder = '/Volumes/WD 500G/39.9尤克里里入门'
-    input_folder = '/Users/mac/Downloads/a'
-    output_folder = '/Users/mac/Downloads/b'
+    input_folder = '/Users/mac/code/qufaya-image/vocalmusic_sound_Separation'
+    output_folder = '/Users/mac/Downloads/vocalmusic_sound_Separation'
 
     process_folder(input_folder, output_folder)
