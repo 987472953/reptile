@@ -36,11 +36,7 @@ def get_tree(project_id, path):
 
 # 获取文件内容
 def get_file_content(project_id, file_path):
-    try:
-        file_path = urlencode(file_path)
-    except Exception as e:
-        print(e)
-    api_url = f"{gitlab_base_url}/api/v4/projects/{project_id}/repository/files/{file_path}/raw?ref=master"
+    api_url = f"{gitlab_base_url}/api/v4/projects/{project_id}/repository/files/{quote(file_path, safe='')}/raw?ref=master"
     print(api_url)
     headers = {'Private-Token': private_token}
     response = requests.get(api_url, headers=headers, verify=False)
